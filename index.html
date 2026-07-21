@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK Pay, Tax & Employment Calculators 2026/27 | Take-Home, Dividend, Redundancy | sortmypay</title>
+<meta name="description" content="Free UK calculators for 2026/27: take-home pay after tax, redundancy pay, holiday entitlement, notice period, maternity pay, dividend tax and mortgage overpayment. Accurate and up to date.">
+<link rel="canonical" href="https://sortmypay.co.uk/">
+<style>
+  :root{
+    --bg:#f7f9fc;--card:#fff;--ink:#12203a;--muted:#5b6b85;--line:#e4e9f2;
+    --brand:#1b5cff;--brand-dark:#0f3fbf;--good:#0a7d4a;--accent:#eef3ff;
+    --radius:14px;--shadow:0 6px 24px rgba(18,32,58,.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto;padding:24px 20px 64px}
+  header h1{font-size:1.55rem;line-height:1.25;margin:.2em 0 .1em}
+  header p.lede{color:var(--muted);margin:.2em 0 1.2em;font-size:1.02rem}
+  .badge{display:inline-block;background:var(--accent);color:var(--brand-dark);font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px;margin-bottom:10px}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+  .tab{flex:1 1 110px;text-align:center;padding:11px 8px;border:1px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;font-weight:700;color:var(--muted);font-size:.92rem}
+  .tab.active{color:#fff;border-color:var(--brand);background:var(--brand)}
+  .panel{display:none}
+  .panel.active{display:block}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  label{display:block;font-weight:600;font-size:.9rem;margin:0 0 5px}
+  .hint{font-weight:400;color:var(--muted);font-size:.82rem}
+  input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:#fff;color:var(--ink)}
+  input:focus,select:focus{outline:2px solid var(--brand);border-color:var(--brand)}
+  .check{display:flex;align-items:center;gap:8px;margin-top:8px}
+  .check input{width:auto}
+  .check label{margin:0;font-weight:500}
+  button{margin-top:14px;width:100%;background:var(--brand);color:#fff;border:0;padding:14px;font-size:1.05rem;font-weight:700;border-radius:10px;cursor:pointer;transition:background .15s}
+  button:hover{background:var(--brand-dark)}
+  .result{margin-top:18px;padding:20px;border-radius:12px;background:linear-gradient(135deg,#0f3fbf,#1b5cff);color:#fff;display:none}
+  .result.show{display:block}
+  .result .big{font-size:2.4rem;font-weight:800;letter-spacing:-.5px;margin:.1em 0}
+  .result .sub{opacity:.92;font-size:.95rem}
+  .pmw{display:flex;gap:10px;margin-top:12px}
+  .pmw div{flex:1;background:rgba(255,255,255,.12);border-radius:9px;padding:10px;text-align:center}
+  .pmw .k{font-size:.75rem;opacity:.85;text-transform:uppercase;letter-spacing:.04em}
+  .pmw .v{font-size:1.15rem;font-weight:700}
+  .breakdown{margin-top:14px;border-top:1px solid rgba(255,255,255,.25);padding-top:12px;font-size:.92rem}
+  .breakdown div{display:flex;justify-content:space-between;padding:3px 0}
+  .error{background:#fff4f4;border:1px solid #ffd4d4;color:#a11;padding:12px 14px;border-radius:10px;margin-top:14px;display:none}
+  .error.show{display:block}
+  h2{font-size:1.25rem;margin:1.6em 0 .4em}
+  h3{font-size:1.05rem;margin:1.3em 0 .3em}
+  .answer{background:var(--accent);border-left:4px solid var(--brand);padding:14px 16px;border-radius:8px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{background:#f2f5fb}
+  details{border:1px solid var(--line);border-radius:10px;padding:2px 14px;margin:8px 0;background:#fff}
+  summary{font-weight:600;cursor:pointer;padding:10px 0}
+  details p{margin:0 0 12px}
+  footer{color:var(--muted);font-size:.82rem;margin-top:30px;border-top:1px solid var(--line);padding-top:16px}
+  a{color:var(--brand)}
+  /* ---- Ad slots: reserved space prevents layout shift (CLS) ---- */
+  .ad{display:flex;align-items:center;justify-content:center;text-align:center;
+      margin:18px 0;border:1px dashed #c7d0e0;border-radius:10px;background:#fbfcfe;
+      color:#9aa7bd;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+  .ad--leaderboard{min-height:100px}   /* top banner / responsive */
+  .ad--inarticle{min-height:280px}     /* in-content rectangle */
+  .ad--result{min-height:120px}        /* just below the result */
+  .ad__label{opacity:.8}
+  .ad-anchor{position:fixed;left:0;right:0;bottom:0;z-index:60;min-height:60px;
+      display:flex;align-items:center;justify-content:center;background:#fff;
+      border-top:1px solid var(--line);box-shadow:0 -2px 12px rgba(18,32,58,.08);
+      color:#9aa7bd;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+  .ad-anchor button{position:absolute;top:-13px;right:10px;width:26px;height:26px;margin:0;
+      padding:0;border-radius:50%;background:#fff;border:1px solid var(--line);color:#5b6b85;
+      font-size:15px;line-height:1;cursor:pointer;box-shadow:var(--shadow)}
+  body.has-anchor{padding-bottom:74px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="badge">Updated for 2026/27 tax year</span>
+  <h1>UK Pay Calculators</h1>
+  <p class="lede">Free, accurate and up to date for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax and mortgage overpayments, all in one place.</p>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-tab="pay">Take-Home Pay</div>
+  <div class="tab" data-tab="red">Redundancy</div>
+  <div class="tab" data-tab="hol">Holiday</div>
+  <div class="tab" data-tab="notice">Notice</div>
+  <div class="tab" data-tab="mat">Maternity</div>
+  <div class="tab" data-tab="div">Dividend Tax</div>
+  <div class="tab" data-tab="mort">Overpayment</div>
+</div>
+
+<!-- AD SLOT 1: top leaderboard (responsive). Paste AdSense <ins> here. -->
+<div class="ad ad--leaderboard"><span class="ad__label">Advertisement</span></div>
+
+<!-- ============ TAKE-HOME PAY ============ -->
+<section class="panel active" id="panel-pay">
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label for="salary">Annual gross salary (£)</label>
+        <input type="number" id="salary" min="0" step="100" placeholder="e.g. 35000">
+      </div>
+      <div>
+        <label for="pregion">Where do you live?</label>
+        <select id="pregion">
+          <option value="ruk">England, Wales or N. Ireland</option>
+          <option value="scot">Scotland</option>
+        </select>
+      </div>
+      <div>
+        <label for="pension">Pension contribution (%) <span class="hint">optional</span></label>
+        <input type="number" id="pension" min="0" max="100" step="0.5" placeholder="e.g. 5">
+      </div>
+      <div>
+        <label for="pmethod">Pension type</label>
+        <select id="pmethod">
+          <option value="sacrifice">Salary sacrifice (before tax &amp; NI)</option>
+          <option value="net">Personal / relief at source (after pay)</option>
+        </select>
+      </div>
+      <div>
+        <label for="splan">Student loan plan</label>
+        <select id="splan">
+          <option value="none">None</option>
+          <option value="1">Plan 1</option>
+          <option value="2">Plan 2</option>
+          <option value="4">Plan 4 (Scotland)</option>
+          <option value="5">Plan 5</option>
+        </select>
+      </div>
+      <div>
+        <label>Postgraduate loan</label>
+        <div class="check"><input type="checkbox" id="pgloan"><label for="pgloan">I also have a postgraduate loan</label></div>
+      </div>
+    </div>
+    <button id="calcPay">Calculate my take-home pay</button>
+    <div class="error" id="payError"></div>
+    <div class="result" id="payResult">
+      <div class="sub">Your take-home pay</div>
+      <div class="big" id="payBig">£0</div>
+      <div class="pmw">
+        <div><div class="k">Per year</div><div class="v" id="pYear">£0</div></div>
+        <div><div class="k">Per month</div><div class="v" id="pMonth">£0</div></div>
+        <div><div class="k">Per week</div><div class="v" id="pWeek">£0</div></div>
+      </div>
+      <div class="breakdown" id="payBreak"></div>
+    </div>
+  </div>
+
+  <!-- AD SLOT 2: below the result — the highest-value spot (peak attention after "Calculate"). -->
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
+
+  <div class="answer">
+    <strong>How UK take-home pay is worked out (2026/27):</strong> From your gross salary you keep your tax-free Personal Allowance of £12,570, then pay Income Tax on the rest (20%, 40% and 45% bands in England, Wales &amp; NI; six bands from 19% to 48% in Scotland). You also pay employee National Insurance at 8% on earnings between £12,570 and £50,270 and 2% above that. Pension contributions and student loan repayments are deducted separately. What's left is your take-home pay.
+  </div>
+
+  <h2>2026/27 rates used in this calculator</h2>
+  <h3>Income Tax — England, Wales &amp; Northern Ireland</h3>
+  <table><tbody>
+    <tr><th>Personal Allowance (0%)</th><td>Up to £12,570</td></tr>
+    <tr><th>Basic rate (20%)</th><td>£12,571 – £50,270</td></tr>
+    <tr><th>Higher rate (40%)</th><td>£50,271 – £125,140</td></tr>
+    <tr><th>Additional rate (45%)</th><td>Over £125,140</td></tr>
+  </tbody></table>
+  <p class="hint">The Personal Allowance reduces by £1 for every £2 you earn over £100,000, disappearing entirely at £125,140. Scotland uses six bands from 19% to 48% — select Scotland above and the calculator applies them automatically.</p>
+  <h3>Employee National Insurance</h3>
+  <table><tbody>
+    <tr><th>Up to £12,570</th><td>0%</td></tr>
+    <tr><th>£12,571 – £50,270</th><td>8%</td></tr>
+    <tr><th>Over £50,270</th><td>2%</td></tr>
+  </tbody></table>
+
+  <!-- AD SLOT 3: in-article, between content and FAQ. -->
+  <div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+
+  <h2>Frequently asked questions</h2>
+  <details><summary>How much is £35,000 after tax in 2026/27?</summary><p>On a £35,000 salary in England, Wales or Northern Ireland with no pension or student loan, you pay £4,486 Income Tax and £1,794 National Insurance, leaving a take-home pay of about £28,720 a year — roughly £2,393 a month. Use the calculator above for your exact figure.</p></details>
+  <details><summary>Does the calculator include Scotland's tax rates?</summary><p>Yes. Select Scotland and it applies the six Scottish Income Tax bands (starter 19%, basic 20%, intermediate 21%, higher 42%, advanced 45% and top 48%) for 2026/27. National Insurance is the same across the whole UK.</p></details>
+  <details><summary>How do pension contributions affect my take-home pay?</summary><p>With salary sacrifice, your contribution is taken from your gross pay before Income Tax and National Insurance, so you pay less of both. With a personal or relief-at-source pension, it's taken after tax. Choose the matching option above for an accurate figure.</p></details>
+  <details><summary>Which student loan plan am I on?</summary><p>Broadly: Plan 1 (English/Welsh students who started before Sept 2012, or Northern Ireland), Plan 2 (England/Wales, 2012–2023 starters), Plan 4 (Scotland), Plan 5 (England, courses from Aug 2023). Repayments are 9% of income above the plan threshold, or 6% for postgraduate loans.</p></details>
+</section>
+
+<!-- ============ REDUNDANCY ============ -->
+<section class="panel" id="panel-red">
+  <div class="card">
+    <div class="grid">
+      <div><label for="dob">Date of birth</label><input type="date" id="dob" max="2020-01-01"></div>
+      <div><label for="start">Employment start date</label><input type="date" id="start"></div>
+      <div><label for="end">Redundancy date <span class="hint">(last day)</span></label><input type="date" id="end"></div>
+      <div><label for="rpay">Gross weekly pay (£) <span class="hint">before tax</span></label><input type="number" id="rpay" min="0" step="0.01" placeholder="e.g. 640"></div>
+      <div><label for="region">Region / date</label>
+        <select id="region">
+          <option value="751">England, Scotland &amp; Wales (£751 cap)</option>
+          <option value="783">Northern Ireland (£783 cap)</option>
+          <option value="719">Redundancy before 6 Apr 2026 (£719 cap)</option>
+        </select></div>
+      <div><label for="capToggle">Apply the weekly pay cap?</label>
+        <select id="capToggle">
+          <option value="yes">Yes – statutory calculation</option>
+          <option value="no">No – use my full weekly pay</option>
+        </select></div>
+    </div>
+    <button id="calcRed">Calculate my redundancy pay</button>
+    <div class="error" id="redError"></div>
+    <div class="result" id="redResult">
+      <div class="sub">Estimated statutory redundancy pay</div>
+      <div class="big" id="redBig">£0</div>
+      <div class="sub" id="redTax"></div>
+      <div class="breakdown" id="redBreak"></div>
+    </div>
+  </div>
+
+  <!-- AD SLOT 4: below the redundancy result. -->
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
+
+  <div class="answer">
+    <strong>How statutory redundancy pay is calculated (2026/27):</strong> You receive 0.5 week's pay for each full year worked while under 22, 1 week's pay for each full year aged 22–40, and 1.5 weeks' pay for each full year aged 41 or over. Service is capped at 20 years and weekly pay at <strong>£751</strong> (Great Britain, from 6 April 2026), giving a maximum statutory payment of <strong>£22,530</strong>. You need at least 2 years' continuous service to qualify.
+  </div>
+
+  <h2>Age bands</h2>
+  <table><thead><tr><th>Age during a full year of service</th><th>Weeks' pay</th></tr></thead>
+  <tbody><tr><td>Under 22</td><td>0.5 week</td></tr><tr><td>22 to 40</td><td>1 week</td></tr><tr><td>41 and over</td><td>1.5 weeks</td></tr></tbody></table>
+
+  <h2>Frequently asked questions</h2>
+  <details><summary>Is statutory redundancy pay taxable?</summary><p>No. Genuine redundancy payments are tax-free up to £30,000, and statutory redundancy pay is almost always within that limit.</p></details>
+  <details><summary>Do I qualify?</summary><p>You qualify if you are an employee with at least 2 years' continuous service and you are being made redundant.</p></details>
+</section>
+
+<!-- HOLIDAY -->
+<section class="panel" id="panel-hol">
+  <div class="card">
+    <div class="grid">
+      <div><label for="holMode">How do you work?</label><select id="holMode"><option value="reg">Set days each week</option><option value="irr">Irregular / part-year hours</option></select></div>
+      <div><label for="holDays">Days worked per week</label><input type="number" id="holDays" min="0" max="7" step="0.5" value="5"></div>
+      <div><label for="holHours">Total hours worked <span class="hint">(irregular only)</span></label><input type="number" id="holHours" min="0" step="1" placeholder="e.g. 1200"></div>
+    </div>
+    <button id="calcHol">Calculate holiday entitlement</button>
+    <div class="error" id="holErr"></div>
+    <div class="result" id="holRes"><div class="sub">Your statutory holiday entitlement</div><div class="big" id="holBig">0</div><div class="sub" id="holSub"></div><div class="breakdown" id="holBreak"></div></div>
+  </div>
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
+  <div class="answer"><strong>How much holiday am I entitled to?</strong> Almost all UK workers get 5.6 weeks of paid holiday a year. For someone working 5 days a week that's 28 days — the legal maximum an employer must give. Work fewer days and you get 5.6 × your days per week. For irregular or part-year hours, holiday builds up at 12.07% of the hours you actually work.</div>
+  <h2>Holiday FAQs</h2>
+  <details><summary>Can my employer include bank holidays?</summary><p>Yes. The 5.6 weeks (28 days for full-time) can include the 8 UK bank holidays — there's no automatic right to take them off on top.</p></details>
+</section>
+
+<!-- NOTICE -->
+<section class="panel" id="panel-notice">
+  <div class="card">
+    <div class="grid">
+      <div><label for="notYears">Complete years employed</label><input type="number" id="notYears" min="0" step="1" placeholder="e.g. 6"></div>
+    </div>
+    <button id="calcNotice">Calculate notice period</button>
+    <div class="error" id="notErr"></div>
+    <div class="result" id="notRes"><div class="sub">Statutory minimum notice from your employer</div><div class="big" id="notBig">0</div><div class="breakdown" id="notBreak"></div></div>
+  </div>
+  <div class="answer"><strong>What notice is my employer required to give?</strong> After one month's service you're entitled to at least one week's notice. Once you've completed two years, that rises to one week for every complete year worked, capped at twelve weeks. Your contract may promise more, but never less than this statutory minimum.</div>
+  <h2>Notice FAQs</h2>
+  <details><summary>What notice must I give my employer?</summary><p>Unless your contract says otherwise, employees are only legally required to give one week's notice once they've worked a month — though contracts often ask for more.</p></details>
+</section>
+
+<!-- MATERNITY / PATERNITY -->
+<section class="panel" id="panel-mat">
+  <div class="card">
+    <div class="grid">
+      <div><label for="matType">Type of leave</label><select id="matType"><option value="smp">Maternity / Adoption</option><option value="spp">Paternity</option></select></div>
+      <div><label for="matAwe">Average weekly earnings (£)</label><input type="number" id="matAwe" min="0" step="1" placeholder="e.g. 600"></div>
+    </div>
+    <button id="calcMat">Calculate statutory pay</button>
+    <div class="error" id="matErr"></div>
+    <div class="result" id="matRes"><div class="sub">Estimated statutory pay</div><div class="big" id="matBig">£0</div><div class="sub" id="matSub"></div><div class="breakdown" id="matBreak"></div></div>
+  </div>
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
+  <div class="answer"><strong>How much is statutory maternity pay in 2026/27?</strong> Statutory Maternity Pay is 90% of your average weekly earnings for the first 6 weeks, then the lower of £194.32 or 90% of your earnings for the next 33 weeks — up to 39 weeks in total. Statutory Paternity Pay is 2 weeks at the same £194.32 rate (or 90% of earnings if lower).</div>
+  <h2>Maternity &amp; paternity FAQs</h2>
+  <details><summary>How long is statutory maternity pay paid for?</summary><p>Up to 39 weeks. Maternity leave itself can last 52 weeks, but the final 13 weeks are usually unpaid.</p></details>
+</section>
+
+<!-- DIVIDEND TAX -->
+<section class="panel" id="panel-div">
+  <div class="card">
+    <div class="grid">
+      <div><label for="divSalary">Salary / other income (£)</label><input type="number" id="divSalary" min="0" step="100" placeholder="e.g. 12570"></div>
+      <div><label for="divAmt">Dividends received (£)</label><input type="number" id="divAmt" min="0" step="100" placeholder="e.g. 40000"></div>
+    </div>
+    <button id="calcDiv">Calculate dividend tax</button>
+    <div class="error" id="divErr"></div>
+    <div class="result" id="divRes"><div class="sub">Tax on your dividends (2026/27)</div><div class="big" id="divBig">£0</div><div class="sub" id="divSub"></div><div class="breakdown" id="divBreak"></div></div>
+  </div>
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
+  <div class="answer"><strong>How much tax will I pay on dividends in 2026/27?</strong> The first £500 of dividends is tax-free. Above that, dividends are taxed at 10.75% within the basic-rate band, 35.75% in the higher-rate band and 39.35% above £125,140 — after your salary and Personal Allowance are taken into account. These rates rose by 2 percentage points from April 2026.</div>
+  <h2>Dividend FAQs</h2>
+  <details><summary>Does this include Corporation Tax?</summary><p>No — this is the personal tax you pay on dividends you receive. Your company also pays Corporation Tax (19–25%) on its profits before dividends are paid out.</p></details>
+  <details><summary>Are dividend rates different in Scotland?</summary><p>No. Dividend tax is set UK-wide, so Scottish taxpayers pay the same dividend rates. Only the tax on your salary differs in Scotland.</p></details>
+</section>
+
+<!-- MORTGAGE OVERPAYMENT -->
+<section class="panel" id="panel-mort">
+  <div class="card">
+    <div class="grid">
+      <div><label for="moBal">Mortgage balance (£)</label><input type="number" id="moBal" min="0" step="1000" placeholder="e.g. 200000"></div>
+      <div><label for="moRate">Interest rate (%)</label><input type="number" id="moRate" min="0" step="0.1" placeholder="e.g. 5"></div>
+      <div><label for="moTerm">Years remaining</label><input type="number" id="moTerm" min="1" step="1" placeholder="e.g. 25"></div>
+      <div><label for="moOver">Monthly overpayment (£)</label><input type="number" id="moOver" min="0" step="10" placeholder="e.g. 200"></div>
+    </div>
+    <button id="calcMort">Calculate savings</button>
+    <div class="error" id="mortErr"></div>
+    <div class="result" id="mortRes"><div class="sub">By overpaying you could save</div><div class="big" id="mortBig">£0</div><div class="sub" id="mortSub"></div><div class="breakdown" id="mortBreak"></div></div>
+  </div>
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
+  <div class="answer"><strong>Is overpaying my mortgage worth it?</strong> Overpaying reduces the balance that interest is charged on, so even a small monthly overpayment can save thousands in interest and clear the mortgage years early. For example, overpaying £200 a month on a £200,000 mortgage at 5% over 25 years saves roughly £42,000 and clears it about 6 years sooner. Check your lender's annual overpayment limit first — often 10%.</div>
+  <h2>Overpayment FAQs</h2>
+  <details><summary>Is there a limit on overpayments?</summary><p>Many fixed-rate deals let you overpay up to 10% of the balance each year without penalty. Above that, early repayment charges may apply — check your mortgage terms.</p></details>
+</section>
+
+<footer>
+  <p><strong>Disclaimer:</strong> These calculators give estimates based on 2026/27 rates for general guidance only, not legal or financial advice. Figures are rounded and assume a standard tax code with income taxed evenly across the year. For your official position, check with HMRC, your employer, ACAS or a qualified adviser.</p>
+  <p>Rates verified against GOV.UK, mygov.scot, the House of Commons Library and CIPP for 2026/27.</p>
+  <p style="margin-top:12px"><a href="/">Home</a> &nbsp;·&nbsp; <a href="/about.html">About</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="/contact.html">Contact</a></p>
+  <p>© 2026 sortmypay.co.uk</p>
+</footer>
+</div>
+
+<!-- AD SLOT 5: sticky bottom anchor (strong RPM on mobile; AdSense "anchor" auto format). -->
+<div class="ad-anchor" id="adAnchor">
+  <button id="adAnchorClose" aria-label="Close advert">&times;</button>
+  <span class="ad__label">Advertisement</span>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"SoftwareApplication","name":"UK Take-Home Pay & Redundancy Calculator 2026/27","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}},
+ {"@type":"FAQPage","mainEntity":[
+   {"@type":"Question","name":"How much is £35,000 after tax in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"On a £35,000 salary in England, Wales or Northern Ireland you pay about £4,486 Income Tax and £1,794 National Insurance, leaving roughly £28,720 a year or £2,393 a month."}},
+   {"@type":"Question","name":"How is UK take-home pay calculated?","acceptedAnswer":{"@type":"Answer","text":"You keep the £12,570 Personal Allowance, pay Income Tax on the rest, plus employee National Insurance at 8% between £12,570 and £50,270 and 2% above. Pension and student loan repayments are deducted separately."}},
+   {"@type":"Question","name":"How is statutory redundancy pay calculated in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"0.5 week's pay per full year under 22, 1 week aged 22 to 40, and 1.5 weeks aged 41 or over. Service is capped at 20 years and weekly pay at £751, for a maximum of £22,530."}},
+   {"@type":"Question","name":"How much tax will I pay on dividends in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"The first £500 of dividends is tax-free. Above that, dividends are taxed at 10.75% in the basic-rate band, 35.75% in the higher-rate band and 39.35% above £125,140, after your salary and Personal Allowance. These rates rose by 2 percentage points from April 2026."}},
+   {"@type":"Question","name":"How much holiday am I entitled to in the UK?","acceptedAnswer":{"@type":"Answer","text":"Almost all workers get 5.6 weeks of paid holiday a year — 28 days for someone working 5 days a week. For irregular or part-year hours, holiday accrues at 12.07% of hours worked."}},
+   {"@type":"Question","name":"How much is statutory maternity pay in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"90% of average weekly earnings for the first 6 weeks, then the lower of £194.32 or 90% of earnings for the next 33 weeks, up to 39 weeks total. Statutory paternity pay is 2 weeks at £194.32 or 90% if lower."}}
+ ]}
+]}
+</script>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const gbp0=n=>'£'+Math.round(n).toLocaleString('en-GB');
+  const gbp2=n=>'£'+n.toLocaleString('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const row=(l,v)=>'<div><span>'+l+'</span><span><strong>'+v+'</strong></span></div>';
+
+  // ---- tabs ----
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    $('panel-'+t.dataset.tab).classList.add('active');
+  }));
+
+  // ---- sticky bottom anchor ad (dismissible) ----
+  document.body.classList.add('has-anchor');
+  $('adAnchorClose').addEventListener('click',function(){
+    $('adAnchor').style.display='none';document.body.classList.remove('has-anchor');
+  });
+
+  // ================= TAKE-HOME PAY =================
+  function personalAllowance(inc){return inc>100000?Math.max(0,12570-(inc-100000)/2):12570;}
+  function taxRUK(taxable){
+    let t=0,r=taxable;
+    const a=Math.min(r,37700);t+=a*0.20;r-=a;
+    const b=Math.min(Math.max(r,0),125140-37700);t+=b*0.40;r-=b;
+    if(r>0)t+=r*0.45;return t;
+  }
+  function taxScot(taxable){
+    const bands=[[3967,0.19],[12989,0.20],[14136,0.21],[31338,0.42],[50140,0.45]];
+    let t=0,r=taxable;
+    for(const [w,rate] of bands){const x=Math.min(Math.max(r,0),w);t+=x*rate;r-=x;}
+    if(r>0)t+=r*0.48;return t;
+  }
+  function ni(inc){return 0.08*Math.min(Math.max(inc-12570,0),50270-12570)+0.02*Math.max(inc-50270,0);}
+  const SL={"1":[26900,0.09],"2":[29385,0.09],"4":[33795,0.09],"5":[25000,0.09]};
+
+  $('calcPay').addEventListener('click',function(){
+    $('payError').classList.remove('show');
+    const gross=parseFloat($('salary').value);
+    const region=$('pregion').value;
+    const pPct=parseFloat($('pension').value)||0;
+    const pMethod=$('pmethod').value;
+    const plan=$('splan').value;
+    const pg=$('pgloan').checked;
+    if(isNaN(gross)||gross<0){$('payError').textContent='Please enter your annual gross salary.';$('payError').classList.add('show');$('payResult').classList.remove('show');return;}
+
+    const pension=gross*pPct/100;
+    const sacrifice=pMethod==='sacrifice';
+    const base=sacrifice?gross-pension:gross;      // income used for tax/NI/SL
+
+    const allow=personalAllowance(base);
+    const taxable=Math.max(0,base-allow);
+    const tax=region==='scot'?taxScot(taxable):taxRUK(taxable);
+    const nic=ni(base);
+    let sl=0;
+    if(SL[plan])sl+=Math.max(0,base-SL[plan][0])*SL[plan][1];
+    if(pg)sl+=Math.max(0,base-21000)*0.06;
+
+    const deductions=tax+nic+sl;
+    const takeHome=(sacrifice?gross-pension:gross)-deductions-(sacrifice?0:pension);
+
+    $('payBig').textContent=gbp0(takeHome);
+    $('pYear').textContent=gbp0(takeHome);
+    $('pMonth').textContent=gbp0(takeHome/12);
+    $('pWeek').textContent=gbp0(takeHome/52);
+
+    let b='';
+    b+=row('Gross salary',gbp0(gross));
+    if(pension>0)b+=row('Pension'+(sacrifice?' (salary sacrifice)':''),'−'+gbp0(pension));
+    b+=row('Income Tax','−'+gbp0(tax));
+    b+=row('National Insurance','−'+gbp0(nic));
+    if(sl>0)b+=row('Student loan','−'+gbp0(sl));
+    b+=row('Take-home pay',gbp0(takeHome));
+    $('payBreak').innerHTML=b;
+    $('payResult').classList.add('show');
+  });
+
+  // ================= REDUNDANCY =================
+  function completeYears(from,to){let y=to.getFullYear()-from.getFullYear();const m=to.getMonth()-from.getMonth();if(m<0||(m===0&&to.getDate()<from.getDate()))y--;return y;}
+  const addYears=(d,n)=>new Date(d.getFullYear()+n,d.getMonth(),d.getDate());
+
+  $('calcRed').addEventListener('click',function(){
+    $('redError').classList.remove('show');
+    const err=m=>{$('redError').textContent=m;$('redError').classList.add('show');$('redResult').classList.remove('show');};
+    const dob=$('dob').value?new Date($('dob').value):null;
+    const start=$('start').value?new Date($('start').value):null;
+    const end=$('end').value?new Date($('end').value):null;
+    const pay=parseFloat($('rpay').value);
+    const cap=parseFloat($('region').value);
+    const applyCap=$('capToggle').value==='yes';
+    if(!dob||!start||!end)return err('Please fill in your date of birth, start date and redundancy date.');
+    if(isNaN(pay)||pay<=0)return err('Please enter your gross weekly pay.');
+    if(end<=start)return err('Your redundancy date must be after your start date.');
+    if(start<=dob)return err('Please check your dates — employment cannot start before you were born.');
+    const totalService=completeYears(start,end);
+    if(totalService<2)return err('You need at least 2 years’ continuous service to qualify. These dates give '+totalService+' full year(s).');
+    const yearsCounted=Math.min(20,totalService);
+    const effStart=start>addYears(end,-20)?start:addYears(end,-20);
+    let weeks=0,wU=0,wM=0,wH=0;
+    for(let i=0;i<yearsCounted;i++){
+      const age=completeYears(dob,addYears(effStart,i));
+      if(age<22){weeks+=0.5;wU++;}else if(age<=40){weeks+=1;wM++;}else{weeks+=1.5;wH++;}
+    }
+    const usedPay=applyCap?Math.min(pay,cap):pay;
+    const total=weeks*usedPay;
+    $('redBig').textContent=gbp0(total);
+    $('redTax').textContent=total<=30000?'Tax-free — within the £30,000 redundancy allowance.':'Note: the amount above £30,000 may be taxable.';
+    let r='';
+    r+=row('Full years of service counted',yearsCounted+(totalService>20?' (capped from '+totalService+')':''));
+    if(wH)r+=row('Years aged 41+ × 1.5 weeks',wH+' → '+(wH*1.5)+' weeks');
+    if(wM)r+=row('Years aged 22–40 × 1 week',wM+' → '+wM+' weeks');
+    if(wU)r+=row('Years under 22 × 0.5 week',wU+' → '+(wU*0.5)+' weeks');
+    r+=row('Total weeks’ pay',weeks);
+    r+=row('Weekly pay used',gbp2(usedPay)+(applyCap&&pay>cap?' (capped from '+gbp2(pay)+')':''));
+    $('redBreak').innerHTML=r;
+    $('redResult').classList.add('show');
+  });
+
+  // ================= HOLIDAY =================
+  $('calcHol').addEventListener('click',function(){
+    $('holErr').classList.remove('show');
+    const err=m=>{$('holErr').textContent=m;$('holErr').classList.add('show');$('holRes').classList.remove('show');};
+    if($('holMode').value==='reg'){
+      const d=parseFloat($('holDays').value);
+      if(isNaN(d)||d<=0||d>7)return err('Please enter the number of days you work each week (1–7).');
+      const days=Math.round(Math.min(d*5.6,28)*10)/10;
+      $('holBig').textContent=days+' days';
+      $('holSub').textContent='per year (5.6 weeks × your days, capped at 28)';
+      $('holBreak').innerHTML=row('Days worked per week',d)+row('Statutory entitlement','5.6 weeks')+row('Your entitlement',days+' days');
+    }else{
+      const h=parseFloat($('holHours').value);
+      if(isNaN(h)||h<=0)return err('Please enter the total hours you have worked.');
+      const hrs=Math.round(h*0.1207*10)/10;
+      $('holBig').textContent=hrs+' hours';
+      $('holSub').textContent='accrued at 12.07% of hours worked';
+      $('holBreak').innerHTML=row('Hours worked',h)+row('Accrual rate','12.07%')+row('Holiday accrued',hrs+' hours');
+    }
+    $('holRes').classList.add('show');
+  });
+
+  // ================= NOTICE =================
+  $('calcNotice').addEventListener('click',function(){
+    $('notErr').classList.remove('show');
+    const y=parseInt($('notYears').value,10);
+    if(isNaN(y)||y<0){$('notErr').textContent='Please enter your complete years of service.';$('notErr').classList.add('show');$('notRes').classList.remove('show');return;}
+    const weeks=y<2?1:Math.min(y,12);
+    $('notBig').textContent=weeks+(weeks===1?' week':' weeks');
+    $('notBreak').innerHTML=row('Complete years employed',y)+row('Statutory rule',y<2?'1 week (after 1 month, under 2 years)':'1 week per full year, max 12')+row('Minimum notice',weeks+(weeks===1?' week':' weeks'));
+    $('notRes').classList.add('show');
+  });
+
+  // ================= MATERNITY / PATERNITY =================
+  $('calcMat').addEventListener('click',function(){
+    $('matErr').classList.remove('show');
+    const err=m=>{$('matErr').textContent=m;$('matErr').classList.add('show');$('matRes').classList.remove('show');};
+    const awe=parseFloat($('matAwe').value),type=$('matType').value,std=194.32;
+    if(isNaN(awe)||awe<=0)return err('Please enter your average weekly earnings.');
+    if(type==='spp'){
+      const wk=Math.min(std,0.9*awe),total=2*wk;
+      $('matBig').textContent=gbp0(total);
+      $('matSub').textContent='2 weeks at '+gbp2(wk)+' per week';
+      $('matBreak').innerHTML=row('Weekly rate','lower of £194.32 or 90% of pay')+row('Paternity pay','2 weeks')+row('Total',gbp0(total));
+    }else{
+      const first=6*0.9*awe,laterWk=Math.min(std,0.9*awe),later=33*laterWk,total=first+later;
+      $('matBig').textContent=gbp0(total);
+      $('matSub').textContent='over 39 weeks (6 at 90%, then 33 at '+gbp2(laterWk)+')';
+      $('matBreak').innerHTML=row('First 6 weeks (90% of pay)',gbp0(first))+row('Next 33 weeks',gbp0(later))+row('Total over 39 weeks',gbp0(total));
+    }
+    $('matRes').classList.add('show');
+  });
+
+  // ================= DIVIDEND TAX =================
+  $('calcDiv').addEventListener('click',function(){
+    $('divErr').classList.remove('show');
+    const err=m=>{$('divErr').textContent=m;$('divErr').classList.add('show');$('divRes').classList.remove('show');};
+    const salary=parseFloat($('divSalary').value)||0,div=parseFloat($('divAmt').value)||0;
+    if(salary<0||div<0)return err('Please enter valid amounts.');
+    if(div<=0)return err('Please enter the dividends you received.');
+    const total=salary+div,allow=personalAllowance(total);
+    const salaryTaxable=Math.max(0,salary-allow),remPA=Math.max(0,allow-salary);
+    let taxable=Math.max(0,div-remPA),dtax=0,cursor=salaryTaxable;
+    const free=Math.min(500,taxable);cursor+=free;let rest=taxable-free;
+    const b=Math.min(rest,Math.max(0,37700-cursor));dtax+=b*0.1075;rest-=b;cursor+=b;
+    const h=Math.min(rest,Math.max(0,112570-cursor));dtax+=h*0.3575;rest-=h;cursor+=h;
+    if(rest>0)dtax+=rest*0.3935;
+    const stax=taxRUK(salaryTaxable);
+    const nic=0.08*Math.min(Math.max(salary-12570,0),50270-12570)+0.02*Math.max(salary-50270,0);
+    const net=salary+div-stax-nic-dtax;
+    $('divBig').textContent=gbp0(dtax);
+    $('divSub').textContent='Total take-home from salary + dividends: '+gbp0(net);
+    $('divBreak').innerHTML=row('Dividend allowance','£500 at 0%')+row('Dividend tax',gbp0(dtax))+row('Income tax on salary',gbp0(stax))+row('National Insurance on salary',gbp0(nic))+row('Total kept',gbp0(net));
+    $('divRes').classList.add('show');
+  });
+
+  // ================= MORTGAGE OVERPAYMENT =================
+  $('calcMort').addEventListener('click',function(){
+    $('mortErr').classList.remove('show');
+    const err=m=>{$('mortErr').textContent=m;$('mortErr').classList.add('show');$('mortRes').classList.remove('show');};
+    const bal=parseFloat($('moBal').value),rate=parseFloat($('moRate').value),years=parseFloat($('moTerm').value),op=parseFloat($('moOver').value)||0;
+    if(isNaN(bal)||bal<=0)return err('Please enter your mortgage balance.');
+    if(isNaN(rate)||rate<0)return err('Please enter your interest rate.');
+    if(isNaN(years)||years<=0)return err('Please enter the years remaining.');
+    if(op<=0)return err('Please enter a monthly overpayment to see the savings.');
+    const r=rate/100/12,n=years*12;
+    const P=r>0?bal*r/(1-Math.pow(1+r,-n)):bal/n;
+    const np=P+op;
+    let n2;
+    if(r>0){ if(np<=bal*r)return err('That overpayment is too small to make progress at this rate — please check the figures.'); n2=-Math.log(1-bal*r/np)/Math.log(1+r); }
+    else n2=bal/np;
+    const monthsSaved=Math.max(0,Math.round(n-n2));
+    const interestSaved=Math.max(0,Math.round((P*n-bal)-(np*n2-bal)));
+    const ys=Math.floor(monthsSaved/12),ms=monthsSaved%12;
+    $('mortBig').textContent=gbp0(interestSaved);
+    $('mortSub').textContent='in interest, clearing it '+ys+' yr '+ms+' mo sooner';
+    $('mortBreak').innerHTML=row('Current monthly payment',gbp0(P))+row('With overpayment',gbp0(np))+row('Time saved',ys+' years '+ms+' months')+row('Interest saved',gbp0(interestSaved));
+    $('mortRes').classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>
