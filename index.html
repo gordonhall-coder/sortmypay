@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UK Pay, Tax & Employment Calculators 2026/27 | Take-Home, Dividend, Redundancy | sortmypay</title>
-<meta name="description" content="Free UK calculators for 2026/27: take-home pay after tax, redundancy pay, holiday entitlement, notice period, maternity pay, dividend tax, mortgage overpayment — plus a Making Tax Digital (MTD) checker for sole traders and landlords. Accurate and up to date.">
+<meta name="description" content="Free UK calculators for 2026/27: take-home pay after tax, redundancy pay, holiday entitlement, notice period, maternity pay, dividend tax, mortgage overpayment — plus a Making Tax Digital (MTD) checker and a 2027 pension Inheritance Tax checker. Accurate and up to date.">
 <link rel="canonical" href="https://sortmypay.co.uk/">
 <meta name="google-adsense-account" content="ca-pub-2537953076284750">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2537953076284750" crossorigin="anonymous"></script>
@@ -87,6 +87,9 @@
   .soft a.try{flex:none;background:var(--brand);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:8px 14px;border-radius:8px;white-space:nowrap}
   .soft a.try:hover{background:var(--brand-dark)}
   .soft .sdisc{padding:10px 18px;background:#fbfcfe;color:var(--muted);font-size:.75rem}
+  /* ---- Warning note (e.g. pension double-tax trap) ---- */
+  .warn{margin-top:14px;background:#fff8ec;border:1px solid #f4dca6;border-left:4px solid #e0a200;color:#6a4e00;padding:12px 14px;border-radius:10px;font-size:.9rem}
+  .warn strong{color:#5a3d00}
 </style>
 </head>
 <body>
@@ -94,7 +97,7 @@
 <header>
   <span class="badge">Updated for 2026/27 tax year</span>
   <h1>UK Pay Calculators</h1>
-  <p class="lede">Free, accurate and up to date for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax, mortgage overpayments and a Making Tax Digital checker, all in one place.</p>
+  <p class="lede">Free, accurate and up to date for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax, mortgage overpayments, a Making Tax Digital checker and a 2027 pension Inheritance Tax checker, all in one place.</p>
 </header>
 
 <div class="tabs">
@@ -106,6 +109,7 @@
   <div class="tab" data-tab="div">Dividend Tax</div>
   <div class="tab" data-tab="mort">Overpayment</div>
   <div class="tab" data-tab="mtd">MTD Checker</div>
+  <div class="tab" data-tab="pen">Pension IHT</div>
 </div>
 
 <!-- AD SLOT 1: top leaderboard (responsive). Paste AdSense <ins> here. -->
@@ -377,6 +381,69 @@
   <details><summary>Do partnerships and limited companies have to use it?</summary><p>Not under this rollout. MTD for Income Tax is for individual sole traders and landlords. Partnerships and companies have separate rules and timelines.</p></details>
 </section>
 
+<section class="panel" id="panel-pen">
+  <div class="card">
+    <div class="grid">
+      <div><label for="penPot">Pension pot value (£) <span class="hint">unused / undrawn funds</span></label><input type="number" id="penPot" min="0" step="1000" placeholder="e.g. 300000"></div>
+      <div><label for="penEstate">Rest of your estate (£) <span class="hint">home, savings, investments, less debts</span></label><input type="number" id="penEstate" min="0" step="1000" placeholder="e.g. 400000"></div>
+      <div><label for="penSpouse">Who inherits?</label>
+        <select id="penSpouse">
+          <option value="other">Children / others (not a spouse)</option>
+          <option value="spouse">Everything to my spouse or civil partner</option>
+        </select></div>
+      <div><label for="penHome">Leaving your home to children/grandchildren?</label>
+        <select id="penHome">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select></div>
+      <div><label for="penAge">Your age when you die</label>
+        <select id="penAge">
+          <option value="under">Under 75</option>
+          <option value="over">75 or over</option>
+        </select></div>
+      <div><label for="penRate">Beneficiary's income tax rate <span class="hint">only matters if 75+</span></label>
+        <select id="penRate">
+          <option value="0">Non-taxpayer (0%)</option>
+          <option value="0.2" selected>Basic rate (20%)</option>
+          <option value="0.4">Higher rate (40%)</option>
+          <option value="0.45">Additional rate (45%)</option>
+        </select></div>
+    </div>
+    <button id="calcPen">Estimate my pension's IHT exposure</button>
+    <div class="error" id="penErr"></div>
+    <div class="result" id="penRes"><div class="sub">Estimated Inheritance Tax on your estate</div><div class="big" id="penBig">—</div><div class="sub" id="penSub"></div><div class="breakdown" id="penBreak"></div></div>
+    <div class="warn" id="penWarn" style="display:none"></div>
+  </div>
+
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
+
+  <div class="answer"><strong>Will my pension be hit by Inheritance Tax from 2027?</strong> From 6 April 2027, most unused pension funds and lump-sum death benefits count as part of your estate for Inheritance Tax. Each person has a £325,000 nil-rate band, plus up to £175,000 more if a home passes to children or grandchildren — anything above the total is taxed at 40%. Pensions left to a spouse or civil partner stay exempt. If you die at 75 or over, your beneficiaries also pay Income Tax at their own rate when they draw the pension, on top of the IHT — a "double charge" that can take the effective rate to 60% or more.</div>
+
+  <h2>How pension Inheritance Tax works from April 2027</h2>
+  <p>Under the rules confirmed by HMRC, unused pension funds and most death benefits are added to the value of your estate when you die on or after 6 April 2027. Your personal representatives report the pension to HMRC alongside the rest of your estate, and any Inheritance Tax due is apportioned across your assets in proportion to their value.</p>
+
+  <table><thead><tr><th>Allowance</th><th>2026/27 amount</th></tr></thead>
+  <tbody>
+    <tr><td>Nil-rate band (everyone)</td><td>£325,000</td></tr>
+    <tr><td>Residence nil-rate band (home to descendants)</td><td>up to £175,000</td></tr>
+    <tr><td>Rate above the allowances</td><td>40%</td></tr>
+  </tbody></table>
+  <p class="hint">The residence nil-rate band starts to taper away once the estate is worth more than £2 million, losing £1 for every £2 above that. Transfers between spouses and civil partners — including pensions — remain exempt, and unused nil-rate bands can pass to a surviving spouse.</p>
+
+  <div class="warn" style="display:block;margin:16px 0"><strong>The post-75 "double tax" trap.</strong> If you die at 75 or over, your beneficiaries pay Income Tax at their marginal rate on pension withdrawals <em>as well as</em> the 40% IHT. On a fully taxable pot that means an effective rate of about 52% for a basic-rate heir, 64% for a higher-rate heir and 67% for an additional-rate heir. There is currently no relief for this double charge in the confirmed rules.</div>
+
+  <div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+
+  <h2>What's out of scope</h2>
+  <p>Not everything is caught. Death-in-service benefits paid because you were employed, dependants' scheme pensions, joint-life annuities and lump sums paid to charity stay outside the Inheritance Tax net. Anything left to a spouse or civil partner is also exempt.</p>
+
+  <h2>Pension Inheritance Tax FAQs</h2>
+  <details><summary>When exactly does this start?</summary><p>The rules apply to deaths on or after 6 April 2027. If someone dies before that date, the current rules apply — pensions generally stay outside the estate — regardless of when the money is actually paid out.</p></details>
+  <details><summary>Are pensions left to my spouse taxed?</summary><p>No. Pensions and other assets passing to a surviving spouse or civil partner remain exempt from Inheritance Tax, and any nil-rate band you don't use can transfer to them for use on the second death.</p></details>
+  <details><summary>Why can the effective rate be over 60%?</summary><p>For deaths at 75 or over, the pension is first reduced by 40% Inheritance Tax, then your beneficiary pays Income Tax at their own rate when they draw what's left. The two charges stack, so a higher-rate beneficiary can lose roughly two-thirds of the pot.</p></details>
+  <details><summary>Who reports and pays the tax?</summary><p>Your personal representatives (executors) are responsible for reporting the pension to HMRC and paying the Inheritance Tax due. Pension scheme administrators and beneficiaries can become jointly liable in some circumstances. This is complex — professional advice is worthwhile for larger estates.</p></details>
+</section>
+
 <footer>
   <p><strong>Disclaimer:</strong> These calculators give estimates based on 2026/27 rates for general guidance only, not legal or financial advice. Figures are rounded and assume a standard tax code with income taxed evenly across the year. For your official position, check with HMRC, your employer, ACAS or a qualified adviser.</p>
   <p>Rates verified against GOV.UK, mygov.scot, the House of Commons Library and CIPP for 2026/27.</p>
@@ -401,7 +468,8 @@
    {"@type":"Question","name":"How much tax will I pay on dividends in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"The first £500 of dividends is tax-free. Above that, dividends are taxed at 10.75% in the basic-rate band, 35.75% in the higher-rate band and 39.35% above £125,140, after your salary and Personal Allowance. These rates rose by 2 percentage points from April 2026."}},
    {"@type":"Question","name":"How much holiday am I entitled to in the UK?","acceptedAnswer":{"@type":"Answer","text":"Almost all workers get 5.6 weeks of paid holiday a year — 28 days for someone working 5 days a week. For irregular or part-year hours, holiday accrues at 12.07% of hours worked."}},
    {"@type":"Question","name":"How much is statutory maternity pay in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"90% of average weekly earnings for the first 6 weeks, then the lower of £194.32 or 90% of earnings for the next 33 weeks, up to 39 weeks total. Statutory paternity pay is 2 weeks at £194.32 or 90% if lower."}},
-   {"@type":"Question","name":"Who has to use Making Tax Digital for Income Tax?","acceptedAnswer":{"@type":"Answer","text":"Sole traders and landlords with combined gross income from self-employment and property over £50,000 must use MTD for Income Tax from 6 April 2026, over £30,000 from April 2027, and over £20,000 from April 2028. Employees and those with only wages, savings, dividends or pension income are not affected."}}
+   {"@type":"Question","name":"Who has to use Making Tax Digital for Income Tax?","acceptedAnswer":{"@type":"Answer","text":"Sole traders and landlords with combined gross income from self-employment and property over £50,000 must use MTD for Income Tax from 6 April 2026, over £30,000 from April 2027, and over £20,000 from April 2028. Employees and those with only wages, savings, dividends or pension income are not affected."}},
+   {"@type":"Question","name":"Will my pension be subject to Inheritance Tax from 2027?","acceptedAnswer":{"@type":"Answer","text":"From 6 April 2027 most unused pension funds and lump-sum death benefits form part of your estate for Inheritance Tax. After the £325,000 nil-rate band, plus up to £175,000 if a home passes to descendants, the excess is taxed at 40%. Pensions left to a spouse or civil partner are exempt. If you die at 75 or over, beneficiaries also pay Income Tax on withdrawals, pushing the effective rate to as much as 67%."}}
  ]}
 ]}
 </script>
@@ -649,6 +717,83 @@
     $('mtdBreak').innerHTML=b;
     $('mtdRes').classList.add('show');
     if(affected)$('mtdSoft').classList.add('show');else $('mtdSoft').classList.remove('show');
+  });
+
+  $('calcPen').addEventListener('click',function(){
+    $('penErr').classList.remove('show');
+    const err=m=>{$('penErr').textContent=m;$('penErr').classList.add('show');$('penRes').classList.remove('show');$('penWarn').style.display='none';};
+    const pot=parseFloat($('penPot').value)||0, other=parseFloat($('penEstate').value)||0;
+    if(pot<0||other<0)return err('Please enter positive amounts (or leave a box blank).');
+    if(pot<=0)return err('Enter a pension pot value to estimate its Inheritance Tax exposure.');
+    const spouse=$('penSpouse').value==='spouse';
+    const home=$('penHome').value==='yes';
+    const over75=$('penAge').value==='over';
+    const rate=parseFloat($('penRate').value)||0;
+    const NRB=325000, RNRBmax=175000;
+    const estate=pot+other;
+
+    // Spouse exemption: everything passes to spouse/civil partner -> no IHT.
+    if(spouse){
+      $('penBig').textContent='£0';
+      $('penSub').textContent='Everything passing to a spouse or civil partner is exempt from Inheritance Tax. Your unused nil-rate bands can also transfer to them for the second death.';
+      let b='';
+      b+=row('Pension pot',gbp0(pot));
+      b+=row('Rest of estate',gbp0(other));
+      b+=row('Total estate',gbp0(estate));
+      b+=row('Spouse/civil partner exemption','Applies — £0 IHT now');
+      $('penBreak').innerHTML=b;
+      $('penRes').classList.add('show');
+      $('penWarn').style.display='none';
+      return;
+    }
+
+    // Residence nil-rate band, with taper £1 for every £2 of estate over £2m.
+    let rnrb=0;
+    if(home){ rnrb=Math.max(0, RNRBmax-Math.max(0,(estate-2000000)/2)); }
+    const allowance=NRB+rnrb;
+    const taxable=Math.max(0, estate-allowance);
+    const iht=taxable*0.4;
+    const penShare = iht*(pot/estate);   // IHT apportioned to the pension
+
+    if(iht<=0){
+      $('penBig').textContent='£0';
+      $('penSub').textContent='Your estate is within the available allowances, so no Inheritance Tax is due on it — including the pension.';
+    } else {
+      $('penBig').textContent=gbp0(iht);
+      $('penSub').textContent='Estimated IHT across your whole estate, of which about '+gbp0(penShare)+' is attributable to the pension.';
+    }
+
+    let b='';
+    b+=row('Pension pot',gbp0(pot));
+    b+=row('Rest of estate',gbp0(other));
+    b+=row('Total estate',gbp0(estate));
+    b+=row('Nil-rate band',gbp0(NRB));
+    b+=row('Residence nil-rate band',home?gbp0(rnrb):'£0 (not claimed)');
+    b+=row('Taxable estate',gbp0(taxable));
+    b+=row('Inheritance Tax at 40%',gbp0(iht));
+    b+=row('IHT attributable to pension',gbp0(penShare));
+
+    // Post-75 income-tax double charge on the inherited pension.
+    $('penWarn').style.display='none';
+    if(over75){
+      const netPen=pot-penShare;          // pension left after IHT
+      const incTax=netPen*rate;           // beneficiary's income tax on withdrawals
+      const totalPenTax=penShare+incTax;
+      const eff=pot>0?(totalPenTax/pot*100):0;
+      b+=row('Income Tax for heirs on pension',gbp0(incTax)+(rate>0?' ('+Math.round(rate*100)+'%)':''));
+      b+=row('Total tax on the pension',gbp0(totalPenTax));
+      $('penBreak').innerHTML=b;
+      if(rate>0 && penShare>0){
+        $('penWarn').innerHTML='<strong>Double-tax trap:</strong> because you die at 75 or over, your pension is hit by Inheritance Tax and then Income Tax when your heirs draw it. In this case that’s an effective rate of about <strong>'+Math.round(eff)+'%</strong> on the pot ('+gbp0(totalPenTax)+' of tax on '+gbp0(pot)+'). Leaving pensions to a spouse, or drawing them down in your lifetime, can reduce this.';
+        $('penWarn').style.display='block';
+      } else if(rate>0){
+        $('penWarn').innerHTML='<strong>Note:</strong> your estate is within the Inheritance Tax allowances, so no IHT is due. But because you die at 75 or over, your beneficiaries still pay Income Tax at their own rate on pension withdrawals — that’s the existing rule, unchanged by the 2027 reform.';
+        $('penWarn').style.display='block';
+      }
+    } else {
+      $('penBreak').innerHTML=b;
+    }
+    $('penRes').classList.add('show');
   });
 })();
 </script>
