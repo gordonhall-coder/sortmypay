@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UK Pay, Tax & Employment Calculators 2026/27 | Take-Home, Dividend, Redundancy | sortmypay</title>
-<meta name="description" content="Free UK calculators for 2026/27: take-home pay after tax, redundancy pay, holiday entitlement, notice period, maternity pay, dividend tax and mortgage overpayment. Accurate and up to date.">
+<meta name="description" content="Free UK calculators for 2026/27: take-home pay after tax, redundancy pay, holiday entitlement, notice period, maternity pay, dividend tax, mortgage overpayment — plus a Making Tax Digital (MTD) checker for sole traders and landlords. Accurate and up to date.">
 <link rel="canonical" href="https://sortmypay.co.uk/">
 <meta name="google-adsense-account" content="ca-pub-2537953076284750">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2537953076284750" crossorigin="anonymous"></script>
@@ -76,6 +76,17 @@
       padding:0;border-radius:50%;background:#fff;border:1px solid var(--line);color:#5b6b85;
       font-size:15px;line-height:1;cursor:pointer;box-shadow:var(--shadow)}
   body.has-anchor{padding-bottom:74px}
+  /* ---- MTD software finder (affiliate) ---- */
+  .soft{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);overflow:hidden;display:none}
+  .soft.show{display:block}
+  .soft h3{margin:0;padding:14px 18px;background:var(--accent);color:var(--brand-dark);font-size:1rem;border-bottom:1px solid var(--line)}
+  .soft .srow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line)}
+  .soft .srow:last-of-type{border-bottom:0}
+  .soft .snm{font-weight:700;font-size:.95rem}
+  .soft .sds{color:var(--muted);font-size:.82rem}
+  .soft a.try{flex:none;background:var(--brand);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:8px 14px;border-radius:8px;white-space:nowrap}
+  .soft a.try:hover{background:var(--brand-dark)}
+  .soft .sdisc{padding:10px 18px;background:#fbfcfe;color:var(--muted);font-size:.75rem}
 </style>
 </head>
 <body>
@@ -83,7 +94,7 @@
 <header>
   <span class="badge">Updated for 2026/27 tax year</span>
   <h1>UK Pay Calculators</h1>
-  <p class="lede">Free, accurate and up to date for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax and mortgage overpayments, all in one place.</p>
+  <p class="lede">Free, accurate and up to date for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax, mortgage overpayments and a Making Tax Digital checker, all in one place.</p>
 </header>
 
 <div class="tabs">
@@ -94,6 +105,7 @@
   <div class="tab" data-tab="mat">Maternity</div>
   <div class="tab" data-tab="div">Dividend Tax</div>
   <div class="tab" data-tab="mort">Overpayment</div>
+  <div class="tab" data-tab="mtd">MTD Checker</div>
 </div>
 
 <!-- AD SLOT 1: top leaderboard (responsive). Paste AdSense <ins> here. -->
@@ -320,6 +332,51 @@
   <details><summary>Is there a limit on overpayments?</summary><p>Many fixed-rate deals let you overpay up to 10% of the balance each year without penalty. Above that, early repayment charges may apply — check your mortgage terms.</p></details>
 </section>
 
+<!-- MAKING TAX DIGITAL -->
+<section class="panel" id="panel-mtd">
+  <div class="card">
+    <div class="grid">
+      <div><label for="mtdSelf">Self-employment income (£) <span class="hint">gross turnover, before expenses</span></label><input type="number" id="mtdSelf" min="0" step="100" placeholder="e.g. 28000"></div>
+      <div><label for="mtdProp">Property / rental income (£) <span class="hint">gross rent, before expenses</span></label><input type="number" id="mtdProp" min="0" step="100" placeholder="e.g. 15000"></div>
+    </div>
+    <button id="calcMtd">Check if MTD applies to me</button>
+    <div class="error" id="mtdErr"></div>
+    <div class="result" id="mtdRes"><div class="sub">Making Tax Digital for Income Tax starts</div><div class="big" id="mtdBig">—</div><div class="sub" id="mtdSub"></div><div class="breakdown" id="mtdBreak"></div></div>
+  </div>
+
+  <!-- MTD-compatible software finder (affiliate; links are placeholders) -->
+  <div class="soft" id="mtdSoft">
+    <h3>MTD-compatible software you can use</h3>
+    <div class="srow"><div><div class="snm">FreeAgent</div><div class="sds">Popular with sole traders &amp; landlords — free with some business bank accounts</div></div><a class="try" href="#" rel="sponsored nofollow" target="_blank" data-aff>Compare</a></div>
+    <div class="srow"><div><div class="snm">QuickBooks</div><div class="sds">Well-known all-rounder, fully MTD-ready</div></div><a class="try" href="#" rel="sponsored nofollow" target="_blank" data-aff>Compare</a></div>
+    <div class="srow"><div><div class="snm">Xero</div><div class="sds">Great as your business grows</div></div><a class="try" href="#" rel="sponsored nofollow" target="_blank" data-aff>Compare</a></div>
+    <div class="srow"><div><div class="snm">Sage</div><div class="sds">Established accounting software with MTD support</div></div><a class="try" href="#" rel="sponsored nofollow" target="_blank" data-aff>Compare</a></div>
+    <div class="sdisc">sortmypay may earn a commission if you sign up through these links, at no extra cost to you. Always check software is on HMRC's approved MTD list before buying.</div>
+  </div>
+
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
+
+  <div class="answer"><strong>Who has to use Making Tax Digital for Income Tax?</strong> MTD for Income Tax applies to sole traders and landlords, based on the combined <em>gross</em> income (turnover before expenses) from self-employment and property. It starts from 6 April 2026 if that income is over £50,000, from 6 April 2027 if over £30,000, and from 6 April 2028 if over £20,000. Employees, and anyone whose only income is wages, savings, dividends or a pension, are not affected. Once in, you must keep digital records and send HMRC quarterly updates using compatible software.</div>
+
+  <h2>When does Making Tax Digital start?</h2>
+  <table><thead><tr><th>Your gross self-employment + property income</th><th>MTD starts</th></tr></thead>
+  <tbody>
+    <tr><td>Over £50,000</td><td>6 April 2026</td></tr>
+    <tr><td>Over £30,000</td><td>6 April 2027</td></tr>
+    <tr><td>Over £20,000</td><td>6 April 2028</td></tr>
+    <tr><td>£20,000 or under</td><td>Not yet required</td></tr>
+  </tbody></table>
+  <p class="hint">"Qualifying income" is your total gross turnover and rental income <em>before</em> expenses, added together — not your profit. Your figure from the tax return two years earlier sets your start date (e.g. your 2024/25 return decides whether you join in April 2026).</p>
+
+  <div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+
+  <h2>Making Tax Digital FAQs</h2>
+  <details><summary>What actually is Making Tax Digital?</summary><p>It's HMRC's shift to digital tax. If it applies to you, you keep your business or property records digitally and send HMRC a summary every quarter using approved software, then a final declaration after the year end — instead of one annual Self Assessment return.</p></details>
+  <details><summary>Does the £50,000 threshold count my salary too?</summary><p>No. Only your gross self-employment and property income count towards the threshold. Salary, pension, savings interest and dividends are excluded — though you still declare them as normal.</p></details>
+  <details><summary>I earn under £20,000 — do I need to do anything?</summary><p>Not yet. MTD for Income Tax isn't mandatory below £20,000, though the government may extend it in future. Carry on with the usual Self Assessment for now.</p></details>
+  <details><summary>Do partnerships and limited companies have to use it?</summary><p>Not under this rollout. MTD for Income Tax is for individual sole traders and landlords. Partnerships and companies have separate rules and timelines.</p></details>
+</section>
+
 <footer>
   <p><strong>Disclaimer:</strong> These calculators give estimates based on 2026/27 rates for general guidance only, not legal or financial advice. Figures are rounded and assume a standard tax code with income taxed evenly across the year. For your official position, check with HMRC, your employer, ACAS or a qualified adviser.</p>
   <p>Rates verified against GOV.UK, mygov.scot, the House of Commons Library and CIPP for 2026/27.</p>
@@ -343,7 +400,8 @@
    {"@type":"Question","name":"How is statutory redundancy pay calculated in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"0.5 week's pay per full year under 22, 1 week aged 22 to 40, and 1.5 weeks aged 41 or over. Service is capped at 20 years and weekly pay at £751, for a maximum of £22,530."}},
    {"@type":"Question","name":"How much tax will I pay on dividends in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"The first £500 of dividends is tax-free. Above that, dividends are taxed at 10.75% in the basic-rate band, 35.75% in the higher-rate band and 39.35% above £125,140, after your salary and Personal Allowance. These rates rose by 2 percentage points from April 2026."}},
    {"@type":"Question","name":"How much holiday am I entitled to in the UK?","acceptedAnswer":{"@type":"Answer","text":"Almost all workers get 5.6 weeks of paid holiday a year — 28 days for someone working 5 days a week. For irregular or part-year hours, holiday accrues at 12.07% of hours worked."}},
-   {"@type":"Question","name":"How much is statutory maternity pay in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"90% of average weekly earnings for the first 6 weeks, then the lower of £194.32 or 90% of earnings for the next 33 weeks, up to 39 weeks total. Statutory paternity pay is 2 weeks at £194.32 or 90% if lower."}}
+   {"@type":"Question","name":"How much is statutory maternity pay in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"90% of average weekly earnings for the first 6 weeks, then the lower of £194.32 or 90% of earnings for the next 33 weeks, up to 39 weeks total. Statutory paternity pay is 2 weeks at £194.32 or 90% if lower."}},
+   {"@type":"Question","name":"Who has to use Making Tax Digital for Income Tax?","acceptedAnswer":{"@type":"Answer","text":"Sole traders and landlords with combined gross income from self-employment and property over £50,000 must use MTD for Income Tax from 6 April 2026, over £30,000 from April 2027, and over £20,000 from April 2028. Employees and those with only wages, savings, dividends or pension income are not affected."}}
  ]}
 ]}
 </script>
@@ -566,6 +624,31 @@
     $('mortSub').textContent='in interest, clearing it '+ys+' yr '+ms+' mo sooner';
     $('mortBreak').innerHTML=row('Current monthly payment',gbp0(P))+row('With overpayment',gbp0(np))+row('Time saved',ys+' years '+ms+' months')+row('Interest saved',gbp0(interestSaved));
     $('mortRes').classList.add('show');
+  });
+
+  // ================= MAKING TAX DIGITAL =================
+  $('calcMtd').addEventListener('click',function(){
+    $('mtdErr').classList.remove('show');
+    const err=m=>{$('mtdErr').textContent=m;$('mtdErr').classList.add('show');$('mtdRes').classList.remove('show');$('mtdSoft').classList.remove('show');};
+    const se=parseFloat($('mtdSelf').value)||0, prop=parseFloat($('mtdProp').value)||0;
+    if(se<0||prop<0)return err('Please enter positive amounts (or leave a box blank).');
+    const q=se+prop;
+    let big,sub,affected=true;
+    if(q<=0){big='Not applicable';sub='MTD for Income Tax only covers self-employment and property income — based on what you entered, it doesn’t apply to you.';affected=false;}
+    else if(q>50000){big='6 April 2026';sub='Your combined gross income is over £50,000, so you’re in the first phase.';}
+    else if(q>30000){big='6 April 2027';sub='Over £30,000 — you join in the second phase.';}
+    else if(q>20000){big='6 April 2028';sub='Over £20,000 — you join in the third phase.';}
+    else{big='Not required yet';sub='Your combined gross income is £20,000 or under, so MTD isn’t mandatory for you yet. Carry on with normal Self Assessment.';affected=false;}
+    $('mtdBig').textContent=big;
+    $('mtdSub').textContent=sub;
+    let b='';
+    b+=row('Self-employment income',gbp0(se));
+    b+=row('Property income',gbp0(prop));
+    b+=row('Combined qualifying income',gbp0(q));
+    b+=row(affected?'You will need to':'Action needed', affected?'Digital records + quarterly updates':'None for MTD');
+    $('mtdBreak').innerHTML=b;
+    $('mtdRes').classList.add('show');
+    if(affected)$('mtdSoft').classList.add('show');else $('mtdSoft').classList.remove('show');
   });
 })();
 </script>
