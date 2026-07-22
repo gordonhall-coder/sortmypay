@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UK Tax &amp; Pay Calculators 2026/27 | Take-Home Pay, Redundancy, Pension IHT | sortmypay</title>
-<meta name="description" content="Free, accurate UK calculators for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax, mortgage overpayment, a Making Tax Digital checker and a 2027 pension Inheritance Tax checker.">
-<link rel="canonical" href="https://sortmypay.co.uk/">
+<title>Redundancy Pay Calculator 2026/27 | Statutory Redundancy | sortmypay</title>
+<meta name="description" content="Calculate your statutory redundancy pay for 2026/27 with the £751 weekly cap. Enter your age, service and weekly pay to see what you're owed.">
+<link rel="canonical" href="https://sortmypay.co.uk/redundancy-pay-calculator">
 <meta name="google-adsense-account" content="ca-pub-2537953076284750">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2537953076284750" crossorigin="anonymous"></script>
 <style>
@@ -110,24 +110,56 @@
 <div class="wrap">
 <header>
   <span class="badge">Updated for 2026/27 tax year</span>
-  <h1>UK Tax &amp; Pay Calculators</h1>
-  <p class="lede">Free, accurate and up to date for 2026/27 — clear answers to the everyday money and employment questions that official sources make confusing. Pick a calculator to get started.</p>
+  <h1>Statutory Redundancy Pay Calculator 2026/27</h1>
+  <p class="lede">Find out what redundancy pay you're legally entitled to, using the 2026/27 age bands and £751 weekly cap.</p>
 </header>
-<nav class="tabs"><a class="tab active" href="/">Home</a><a class="tab" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab" href="/making-tax-digital-checker">MTD Checker</a><a class="tab" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
+<nav class="tabs"><a class="tab" href="/">Home</a><a class="tab" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab active" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab" href="/making-tax-digital-checker">MTD Checker</a><a class="tab" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
 <div class="ad ad--leaderboard"><span class="ad__label">Advertisement</span></div>
 <main>
-<div class="toolgrid"><a class="toolcard" href="/take-home-pay-calculator"><div class="tt">Take-Home Pay</div><div class="td">Your salary after Income Tax, NI, pension and student loan.</div></a><a class="toolcard" href="/redundancy-pay-calculator"><div class="tt">Redundancy</div><div class="td">What you're owed if you're made redundant, by age and service.</div></a><a class="toolcard" href="/holiday-entitlement-calculator"><div class="tt">Holiday</div><div class="td">How many days paid holiday you get — set days or irregular hours.</div></a><a class="toolcard" href="/notice-period-calculator"><div class="tt">Notice</div><div class="td">The minimum notice your employer must give you.</div></a><a class="toolcard" href="/maternity-pay-calculator"><div class="tt">Maternity</div><div class="td">Statutory maternity and paternity pay over 39 weeks.</div></a><a class="toolcard" href="/dividend-tax-calculator"><div class="tt">Dividend Tax</div><div class="td">Tax on dividends for company directors, at the new 2026/27 rates.</div></a><a class="toolcard" href="/mortgage-overpayment-calculator"><div class="tt">Overpayment</div><div class="td">Interest and years saved by overpaying your mortgage.</div></a><a class="toolcard" href="/making-tax-digital-checker"><div class="tt">MTD Checker</div><div class="td">When MTD for Income Tax starts for you: 2026, 2027 or 2028.</div></a><a class="toolcard" href="/pension-inheritance-tax-2027"><div class="tt">Pension IHT</div><div class="td">Whether your pension gets taxed under the new April 2027 rules.</div></a></div>
+<div class="card">
+    <div class="grid">
+      <div><label for="dob">Date of birth</label><input type="date" id="dob" max="2020-01-01"></div>
+      <div><label for="start">Employment start date</label><input type="date" id="start"></div>
+      <div><label for="end">Redundancy date <span class="hint">(last day)</span></label><input type="date" id="end"></div>
+      <div><label for="rpay">Gross weekly pay (£) <span class="hint">before tax</span></label><input type="number" id="rpay" min="0" step="0.01" placeholder="e.g. 640"></div>
+      <div><label for="region">Region / date</label>
+        <select id="region">
+          <option value="751">England, Scotland &amp; Wales (£751 cap)</option>
+          <option value="783">Northern Ireland (£783 cap)</option>
+          <option value="719">Redundancy before 6 Apr 2026 (£719 cap)</option>
+        </select></div>
+      <div><label for="capToggle">Apply the weekly pay cap?</label>
+        <select id="capToggle">
+          <option value="yes">Yes – statutory calculation</option>
+          <option value="no">No – use my full weekly pay</option>
+        </select></div>
+    </div>
+    <button id="calcRed">Calculate my redundancy pay</button>
+    <div class="error" id="redError"></div>
+    <div class="result" id="redResult">
+      <div class="sub">Estimated statutory redundancy pay</div>
+      <div class="big" id="redBig">£0</div>
+      <div class="sub" id="redTax"></div>
+      <div class="breakdown" id="redBreak"></div>
+    </div>
+  </div>
 
-<div class="answer"><strong>What is sortmypay?</strong> sortmypay is a free set of UK money and employment calculators, built on the official rates and rules for the 2026/27 tax year. Whether you want to know your take-home pay after tax, what redundancy you're owed, how much holiday you've earned, or whether the new 2027 pension Inheritance Tax rules affect you, each tool gives a clear, accurate answer — checked against GOV.UK, HMRC and the House of Commons Library.</div>
+  <!-- AD SLOT 4: below the redundancy result. -->
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
 
-<h2>Why people trust sortmypay</h2>
-<p>Every calculator uses the current tax-year figures and is updated when rates change each April. Where a number is an estimate or a rule of thumb, we say so. The tools are free, need no sign-up, and are supported by advertising so we can keep them accurate and up to date.</p>
+  <div class="answer">
+    <strong>How statutory redundancy pay is calculated (2026/27):</strong> You receive 0.5 week's pay for each full year worked while under 22, 1 week's pay for each full year aged 22–40, and 1.5 weeks' pay for each full year aged 41 or over. Service is capped at 20 years and weekly pay at <strong>£751</strong> (Great Britain, from 6 April 2026), giving a maximum statutory payment of <strong>£22,530</strong>. You need at least 2 years' continuous service to qualify.
+  </div>
 
-<div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+  <h2>Age bands</h2>
+  <table><thead><tr><th>Age during a full year of service</th><th>Weeks' pay</th></tr></thead>
+  <tbody><tr><td>Under 22</td><td>0.5 week</td></tr><tr><td>22 to 40</td><td>1 week</td></tr><tr><td>41 and over</td><td>1.5 weeks</td></tr></tbody></table>
 
-<h2>Popular right now</h2>
-<p>Two rule changes are catching people out: <a href="/making-tax-digital-checker">Making Tax Digital for Income Tax</a>, which starts rolling out from April 2026 for sole traders and landlords, and the <a href="/pension-inheritance-tax-2027">2027 pension Inheritance Tax changes</a>, which bring most unused pensions into your estate for the first time. Both have dedicated checkers above.</p>
+  <h2>Frequently asked questions</h2>
+  <details><summary>Is statutory redundancy pay taxable?</summary><p>No. Genuine redundancy payments are tax-free up to £30,000, and statutory redundancy pay is almost always within that limit.</p></details>
+  <details><summary>Do I qualify?</summary><p>You qualify if you are an employee with at least 2 years' continuous service and you are being made redundant.</p></details>
 </main>
+<section class="related card"><h2>More UK calculators</h2><ul class="rellist"><li><a href="/take-home-pay-calculator">Take-Home Pay</a></li><li><a href="/holiday-entitlement-calculator">Holiday</a></li><li><a href="/notice-period-calculator">Notice</a></li><li><a href="/maternity-pay-calculator">Maternity</a></li><li><a href="/dividend-tax-calculator">Dividend Tax</a></li><li><a href="/mortgage-overpayment-calculator">Overpayment</a></li><li><a href="/making-tax-digital-checker">MTD Checker</a></li><li><a href="/pension-inheritance-tax-2027">Pension IHT</a></li></ul></section>
 <footer>
   <p><strong>Disclaimer:</strong> These calculators give estimates based on 2026/27 rates for general guidance only, not legal or financial advice. Figures are rounded and assume a standard tax code with income taxed evenly across the year. For your official position, check with HMRC, your employer, ACAS or a qualified adviser.</p>
   <p>Rates verified against GOV.UK, mygov.scot, the House of Commons Library and CIPP for 2026/27.</p>
@@ -140,7 +172,7 @@
   <span class="ad__label">Advertisement</span>
 </div>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"sortmypay","url":"https://sortmypay.co.uk/"},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Take-Home Pay","url":"https://sortmypay.co.uk/take-home-pay-calculator"},{"@type":"ListItem","position":2,"name":"Redundancy","url":"https://sortmypay.co.uk/redundancy-pay-calculator"},{"@type":"ListItem","position":3,"name":"Holiday","url":"https://sortmypay.co.uk/holiday-entitlement-calculator"},{"@type":"ListItem","position":4,"name":"Notice","url":"https://sortmypay.co.uk/notice-period-calculator"},{"@type":"ListItem","position":5,"name":"Maternity","url":"https://sortmypay.co.uk/maternity-pay-calculator"},{"@type":"ListItem","position":6,"name":"Dividend Tax","url":"https://sortmypay.co.uk/dividend-tax-calculator"},{"@type":"ListItem","position":7,"name":"Overpayment","url":"https://sortmypay.co.uk/mortgage-overpayment-calculator"},{"@type":"ListItem","position":8,"name":"MTD Checker","url":"https://sortmypay.co.uk/making-tax-digital-checker"},{"@type":"ListItem","position":9,"name":"Pension IHT","url":"https://sortmypay.co.uk/pension-inheritance-tax-2027"}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"UK Statutory Redundancy Pay Calculator 2026/27","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sortmypay.co.uk/"},{"@type":"ListItem","position":2,"name":"Redundancy","item":"https://sortmypay.co.uk/redundancy-pay-calculator"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is statutory redundancy pay taxable?","acceptedAnswer":{"@type":"Answer","text":"No. Genuine redundancy payments are tax-free up to £30,000, and statutory redundancy pay is almost always within that limit."}},{"@type":"Question","name":"Do I qualify?","acceptedAnswer":{"@type":"Answer","text":"You qualify if you are an employee with at least 2 years' continuous service and you are being made redundant."}}]}]}
 </script>
 <script>
 (function(){

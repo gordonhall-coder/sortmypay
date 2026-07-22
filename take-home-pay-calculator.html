@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UK Tax &amp; Pay Calculators 2026/27 | Take-Home Pay, Redundancy, Pension IHT | sortmypay</title>
-<meta name="description" content="Free, accurate UK calculators for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax, mortgage overpayment, a Making Tax Digital checker and a 2027 pension Inheritance Tax checker.">
-<link rel="canonical" href="https://sortmypay.co.uk/">
+<title>Take-Home Pay Calculator 2026/27 | UK Salary After Tax | sortmypay</title>
+<meta name="description" content="Work out your UK take-home pay for 2026/27. Enter your salary to see Income Tax, National Insurance, pension and student loan deductions — England, Wales, NI and Scotland.">
+<link rel="canonical" href="https://sortmypay.co.uk/take-home-pay-calculator">
 <meta name="google-adsense-account" content="ca-pub-2537953076284750">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2537953076284750" crossorigin="anonymous"></script>
 <style>
@@ -110,24 +110,98 @@
 <div class="wrap">
 <header>
   <span class="badge">Updated for 2026/27 tax year</span>
-  <h1>UK Tax &amp; Pay Calculators</h1>
-  <p class="lede">Free, accurate and up to date for 2026/27 — clear answers to the everyday money and employment questions that official sources make confusing. Pick a calculator to get started.</p>
+  <h1>UK Take-Home Pay Calculator 2026/27</h1>
+  <p class="lede">See exactly what lands in your account after Income Tax, National Insurance, pension and student loan — updated for the 2026/27 tax year.</p>
 </header>
-<nav class="tabs"><a class="tab active" href="/">Home</a><a class="tab" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab" href="/making-tax-digital-checker">MTD Checker</a><a class="tab" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
+<nav class="tabs"><a class="tab" href="/">Home</a><a class="tab active" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab" href="/making-tax-digital-checker">MTD Checker</a><a class="tab" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
 <div class="ad ad--leaderboard"><span class="ad__label">Advertisement</span></div>
 <main>
-<div class="toolgrid"><a class="toolcard" href="/take-home-pay-calculator"><div class="tt">Take-Home Pay</div><div class="td">Your salary after Income Tax, NI, pension and student loan.</div></a><a class="toolcard" href="/redundancy-pay-calculator"><div class="tt">Redundancy</div><div class="td">What you're owed if you're made redundant, by age and service.</div></a><a class="toolcard" href="/holiday-entitlement-calculator"><div class="tt">Holiday</div><div class="td">How many days paid holiday you get — set days or irregular hours.</div></a><a class="toolcard" href="/notice-period-calculator"><div class="tt">Notice</div><div class="td">The minimum notice your employer must give you.</div></a><a class="toolcard" href="/maternity-pay-calculator"><div class="tt">Maternity</div><div class="td">Statutory maternity and paternity pay over 39 weeks.</div></a><a class="toolcard" href="/dividend-tax-calculator"><div class="tt">Dividend Tax</div><div class="td">Tax on dividends for company directors, at the new 2026/27 rates.</div></a><a class="toolcard" href="/mortgage-overpayment-calculator"><div class="tt">Overpayment</div><div class="td">Interest and years saved by overpaying your mortgage.</div></a><a class="toolcard" href="/making-tax-digital-checker"><div class="tt">MTD Checker</div><div class="td">When MTD for Income Tax starts for you: 2026, 2027 or 2028.</div></a><a class="toolcard" href="/pension-inheritance-tax-2027"><div class="tt">Pension IHT</div><div class="td">Whether your pension gets taxed under the new April 2027 rules.</div></a></div>
+<div class="card">
+    <div class="grid">
+      <div>
+        <label for="salary">Annual gross salary (£)</label>
+        <input type="number" id="salary" min="0" step="100" placeholder="e.g. 35000">
+      </div>
+      <div>
+        <label for="pregion">Where do you live?</label>
+        <select id="pregion">
+          <option value="ruk">England, Wales or N. Ireland</option>
+          <option value="scot">Scotland</option>
+        </select>
+      </div>
+      <div>
+        <label for="pension">Pension contribution (%) <span class="hint">optional</span></label>
+        <input type="number" id="pension" min="0" max="100" step="0.5" placeholder="e.g. 5">
+      </div>
+      <div>
+        <label for="pmethod">Pension type</label>
+        <select id="pmethod">
+          <option value="sacrifice">Salary sacrifice (before tax &amp; NI)</option>
+          <option value="net">Personal / relief at source (after pay)</option>
+        </select>
+      </div>
+      <div>
+        <label for="splan">Student loan plan</label>
+        <select id="splan">
+          <option value="none">None</option>
+          <option value="1">Plan 1</option>
+          <option value="2">Plan 2</option>
+          <option value="4">Plan 4 (Scotland)</option>
+          <option value="5">Plan 5</option>
+        </select>
+      </div>
+      <div>
+        <label>Postgraduate loan</label>
+        <div class="check"><input type="checkbox" id="pgloan"><label for="pgloan">I also have a postgraduate loan</label></div>
+      </div>
+    </div>
+    <button id="calcPay">Calculate my take-home pay</button>
+    <div class="error" id="payError"></div>
+    <div class="result" id="payResult">
+      <div class="sub">Your take-home pay</div>
+      <div class="big" id="payBig">£0</div>
+      <div class="pmw">
+        <div><div class="k">Per year</div><div class="v" id="pYear">£0</div></div>
+        <div><div class="k">Per month</div><div class="v" id="pMonth">£0</div></div>
+        <div><div class="k">Per week</div><div class="v" id="pWeek">£0</div></div>
+      </div>
+      <div class="breakdown" id="payBreak"></div>
+    </div>
+  </div>
 
-<div class="answer"><strong>What is sortmypay?</strong> sortmypay is a free set of UK money and employment calculators, built on the official rates and rules for the 2026/27 tax year. Whether you want to know your take-home pay after tax, what redundancy you're owed, how much holiday you've earned, or whether the new 2027 pension Inheritance Tax rules affect you, each tool gives a clear, accurate answer — checked against GOV.UK, HMRC and the House of Commons Library.</div>
+  <!-- AD SLOT 2: below the result — the highest-value spot (peak attention after "Calculate"). -->
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
 
-<h2>Why people trust sortmypay</h2>
-<p>Every calculator uses the current tax-year figures and is updated when rates change each April. Where a number is an estimate or a rule of thumb, we say so. The tools are free, need no sign-up, and are supported by advertising so we can keep them accurate and up to date.</p>
+  <div class="answer">
+    <strong>How UK take-home pay is worked out (2026/27):</strong> From your gross salary you keep your tax-free Personal Allowance of £12,570, then pay Income Tax on the rest (20%, 40% and 45% bands in England, Wales &amp; NI; six bands from 19% to 48% in Scotland). You also pay employee National Insurance at 8% on earnings between £12,570 and £50,270 and 2% above that. Pension contributions and student loan repayments are deducted separately. What's left is your take-home pay.
+  </div>
 
-<div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+  <h2>2026/27 rates used in this calculator</h2>
+  <h3>Income Tax — England, Wales &amp; Northern Ireland</h3>
+  <table><tbody>
+    <tr><th>Personal Allowance (0%)</th><td>Up to £12,570</td></tr>
+    <tr><th>Basic rate (20%)</th><td>£12,571 – £50,270</td></tr>
+    <tr><th>Higher rate (40%)</th><td>£50,271 – £125,140</td></tr>
+    <tr><th>Additional rate (45%)</th><td>Over £125,140</td></tr>
+  </tbody></table>
+  <p class="hint">The Personal Allowance reduces by £1 for every £2 you earn over £100,000, disappearing entirely at £125,140. Scotland uses six bands from 19% to 48% — select Scotland above and the calculator applies them automatically.</p>
+  <h3>Employee National Insurance</h3>
+  <table><tbody>
+    <tr><th>Up to £12,570</th><td>0%</td></tr>
+    <tr><th>£12,571 – £50,270</th><td>8%</td></tr>
+    <tr><th>Over £50,270</th><td>2%</td></tr>
+  </tbody></table>
 
-<h2>Popular right now</h2>
-<p>Two rule changes are catching people out: <a href="/making-tax-digital-checker">Making Tax Digital for Income Tax</a>, which starts rolling out from April 2026 for sole traders and landlords, and the <a href="/pension-inheritance-tax-2027">2027 pension Inheritance Tax changes</a>, which bring most unused pensions into your estate for the first time. Both have dedicated checkers above.</p>
+  <!-- AD SLOT 3: in-article, between content and FAQ. -->
+  <div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+
+  <h2>Frequently asked questions</h2>
+  <details><summary>How much is £35,000 after tax in 2026/27?</summary><p>On a £35,000 salary in England, Wales or Northern Ireland with no pension or student loan, you pay £4,486 Income Tax and £1,794 National Insurance, leaving a take-home pay of about £28,720 a year — roughly £2,393 a month. Use the calculator above for your exact figure.</p></details>
+  <details><summary>Does the calculator include Scotland's tax rates?</summary><p>Yes. Select Scotland and it applies the six Scottish Income Tax bands (starter 19%, basic 20%, intermediate 21%, higher 42%, advanced 45% and top 48%) for 2026/27. National Insurance is the same across the whole UK.</p></details>
+  <details><summary>How do pension contributions affect my take-home pay?</summary><p>With salary sacrifice, your contribution is taken from your gross pay before Income Tax and National Insurance, so you pay less of both. With a personal or relief-at-source pension, it's taken after tax. Choose the matching option above for an accurate figure.</p></details>
+  <details><summary>Which student loan plan am I on?</summary><p>Broadly: Plan 1 (English/Welsh students who started before Sept 2012, or Northern Ireland), Plan 2 (England/Wales, 2012–2023 starters), Plan 4 (Scotland), Plan 5 (England, courses from Aug 2023). Repayments are 9% of income above the plan threshold, or 6% for postgraduate loans.</p></details>
 </main>
+<section class="related card"><h2>More UK calculators</h2><ul class="rellist"><li><a href="/redundancy-pay-calculator">Redundancy</a></li><li><a href="/holiday-entitlement-calculator">Holiday</a></li><li><a href="/notice-period-calculator">Notice</a></li><li><a href="/maternity-pay-calculator">Maternity</a></li><li><a href="/dividend-tax-calculator">Dividend Tax</a></li><li><a href="/mortgage-overpayment-calculator">Overpayment</a></li><li><a href="/making-tax-digital-checker">MTD Checker</a></li><li><a href="/pension-inheritance-tax-2027">Pension IHT</a></li></ul></section>
 <footer>
   <p><strong>Disclaimer:</strong> These calculators give estimates based on 2026/27 rates for general guidance only, not legal or financial advice. Figures are rounded and assume a standard tax code with income taxed evenly across the year. For your official position, check with HMRC, your employer, ACAS or a qualified adviser.</p>
   <p>Rates verified against GOV.UK, mygov.scot, the House of Commons Library and CIPP for 2026/27.</p>
@@ -140,7 +214,7 @@
   <span class="ad__label">Advertisement</span>
 </div>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"sortmypay","url":"https://sortmypay.co.uk/"},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Take-Home Pay","url":"https://sortmypay.co.uk/take-home-pay-calculator"},{"@type":"ListItem","position":2,"name":"Redundancy","url":"https://sortmypay.co.uk/redundancy-pay-calculator"},{"@type":"ListItem","position":3,"name":"Holiday","url":"https://sortmypay.co.uk/holiday-entitlement-calculator"},{"@type":"ListItem","position":4,"name":"Notice","url":"https://sortmypay.co.uk/notice-period-calculator"},{"@type":"ListItem","position":5,"name":"Maternity","url":"https://sortmypay.co.uk/maternity-pay-calculator"},{"@type":"ListItem","position":6,"name":"Dividend Tax","url":"https://sortmypay.co.uk/dividend-tax-calculator"},{"@type":"ListItem","position":7,"name":"Overpayment","url":"https://sortmypay.co.uk/mortgage-overpayment-calculator"},{"@type":"ListItem","position":8,"name":"MTD Checker","url":"https://sortmypay.co.uk/making-tax-digital-checker"},{"@type":"ListItem","position":9,"name":"Pension IHT","url":"https://sortmypay.co.uk/pension-inheritance-tax-2027"}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"UK Take-Home Pay Calculator 2026/27","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sortmypay.co.uk/"},{"@type":"ListItem","position":2,"name":"Take-Home Pay","item":"https://sortmypay.co.uk/take-home-pay-calculator"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much is £35,000 after tax in 2026/27?","acceptedAnswer":{"@type":"Answer","text":"On a £35,000 salary in England, Wales or Northern Ireland with no pension or student loan, you pay £4,486 Income Tax and £1,794 National Insurance, leaving a take-home pay of about £28,720 a year — roughly £2,393 a month. Use the calculator above for your exact figure."}},{"@type":"Question","name":"Does the calculator include Scotland's tax rates?","acceptedAnswer":{"@type":"Answer","text":"Yes. Select Scotland and it applies the six Scottish Income Tax bands (starter 19%, basic 20%, intermediate 21%, higher 42%, advanced 45% and top 48%) for 2026/27. National Insurance is the same across the whole UK."}},{"@type":"Question","name":"How do pension contributions affect my take-home pay?","acceptedAnswer":{"@type":"Answer","text":"With salary sacrifice, your contribution is taken from your gross pay before Income Tax and National Insurance, so you pay less of both. With a personal or relief-at-source pension, it's taken after tax. Choose the matching option above for an accurate figure."}},{"@type":"Question","name":"Which student loan plan am I on?","acceptedAnswer":{"@type":"Answer","text":"Broadly: Plan 1 (English/Welsh students who started before Sept 2012, or Northern Ireland), Plan 2 (England/Wales, 2012–2023 starters), Plan 4 (Scotland), Plan 5 (England, courses from Aug 2023). Repayments are 9% of income above the plan threshold, or 6% for postgraduate loans."}}]}]}
 </script>
 <script>
 (function(){

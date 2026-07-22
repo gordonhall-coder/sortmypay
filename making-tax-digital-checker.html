@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UK Tax &amp; Pay Calculators 2026/27 | Take-Home Pay, Redundancy, Pension IHT | sortmypay</title>
-<meta name="description" content="Free, accurate UK calculators for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax, mortgage overpayment, a Making Tax Digital checker and a 2027 pension Inheritance Tax checker.">
-<link rel="canonical" href="https://sortmypay.co.uk/">
+<title>Making Tax Digital Checker 2026 | When Does MTD Start for Me? | sortmypay</title>
+<meta name="description" content="Find out when Making Tax Digital for Income Tax applies to you — April 2026, 2027 or 2028 — based on your self-employment and property income. Free MTD checker.">
+<link rel="canonical" href="https://sortmypay.co.uk/making-tax-digital-checker">
 <meta name="google-adsense-account" content="ca-pub-2537953076284750">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2537953076284750" crossorigin="anonymous"></script>
 <style>
@@ -110,24 +110,55 @@
 <div class="wrap">
 <header>
   <span class="badge">Updated for 2026/27 tax year</span>
-  <h1>UK Tax &amp; Pay Calculators</h1>
-  <p class="lede">Free, accurate and up to date for 2026/27 — clear answers to the everyday money and employment questions that official sources make confusing. Pick a calculator to get started.</p>
+  <h1>Making Tax Digital (MTD) Checker</h1>
+  <p class="lede">Find out exactly when Making Tax Digital for Income Tax starts for you, based on your self-employment and rental income.</p>
 </header>
-<nav class="tabs"><a class="tab active" href="/">Home</a><a class="tab" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab" href="/making-tax-digital-checker">MTD Checker</a><a class="tab" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
+<nav class="tabs"><a class="tab" href="/">Home</a><a class="tab" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab active" href="/making-tax-digital-checker">MTD Checker</a><a class="tab" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
 <div class="ad ad--leaderboard"><span class="ad__label">Advertisement</span></div>
 <main>
-<div class="toolgrid"><a class="toolcard" href="/take-home-pay-calculator"><div class="tt">Take-Home Pay</div><div class="td">Your salary after Income Tax, NI, pension and student loan.</div></a><a class="toolcard" href="/redundancy-pay-calculator"><div class="tt">Redundancy</div><div class="td">What you're owed if you're made redundant, by age and service.</div></a><a class="toolcard" href="/holiday-entitlement-calculator"><div class="tt">Holiday</div><div class="td">How many days paid holiday you get — set days or irregular hours.</div></a><a class="toolcard" href="/notice-period-calculator"><div class="tt">Notice</div><div class="td">The minimum notice your employer must give you.</div></a><a class="toolcard" href="/maternity-pay-calculator"><div class="tt">Maternity</div><div class="td">Statutory maternity and paternity pay over 39 weeks.</div></a><a class="toolcard" href="/dividend-tax-calculator"><div class="tt">Dividend Tax</div><div class="td">Tax on dividends for company directors, at the new 2026/27 rates.</div></a><a class="toolcard" href="/mortgage-overpayment-calculator"><div class="tt">Overpayment</div><div class="td">Interest and years saved by overpaying your mortgage.</div></a><a class="toolcard" href="/making-tax-digital-checker"><div class="tt">MTD Checker</div><div class="td">When MTD for Income Tax starts for you: 2026, 2027 or 2028.</div></a><a class="toolcard" href="/pension-inheritance-tax-2027"><div class="tt">Pension IHT</div><div class="td">Whether your pension gets taxed under the new April 2027 rules.</div></a></div>
+<div class="card">
+    <div class="grid">
+      <div><label for="mtdSelf">Self-employment income (£) <span class="hint">gross turnover, before expenses</span></label><input type="number" id="mtdSelf" min="0" step="100" placeholder="e.g. 28000"></div>
+      <div><label for="mtdProp">Property / rental income (£) <span class="hint">gross rent, before expenses</span></label><input type="number" id="mtdProp" min="0" step="100" placeholder="e.g. 15000"></div>
+    </div>
+    <button id="calcMtd">Check if MTD applies to me</button>
+    <div class="error" id="mtdErr"></div>
+    <div class="result" id="mtdRes"><div class="sub">Making Tax Digital for Income Tax starts</div><div class="big" id="mtdBig">—</div><div class="sub" id="mtdSub"></div><div class="breakdown" id="mtdBreak"></div></div>
+  </div>
 
-<div class="answer"><strong>What is sortmypay?</strong> sortmypay is a free set of UK money and employment calculators, built on the official rates and rules for the 2026/27 tax year. Whether you want to know your take-home pay after tax, what redundancy you're owed, how much holiday you've earned, or whether the new 2027 pension Inheritance Tax rules affect you, each tool gives a clear, accurate answer — checked against GOV.UK, HMRC and the House of Commons Library.</div>
+  <!-- MTD-compatible software finder (affiliate; links are placeholders) -->
+  <div class="soft" id="mtdSoft">
+    <h3>MTD-compatible software you can use</h3>
+    <div class="srow"><div><div class="snm">FreeAgent</div><div class="sds">Popular with sole traders &amp; landlords — free with some business bank accounts</div></div><a class="try" href="#" rel="sponsored nofollow" target="_blank" data-aff>Compare</a></div>
+    <div class="srow"><div><div class="snm">QuickBooks</div><div class="sds">Well-known all-rounder, fully MTD-ready</div></div><a class="try" href="#" rel="sponsored nofollow" target="_blank" data-aff>Compare</a></div>
+    <div class="srow"><div><div class="snm">Xero</div><div class="sds">Great as your business grows</div></div><a class="try" href="#" rel="sponsored nofollow" target="_blank" data-aff>Compare</a></div>
+    <div class="srow"><div><div class="snm">Sage</div><div class="sds">Established accounting software with MTD support</div></div><a class="try" href="#" rel="sponsored nofollow" target="_blank" data-aff>Compare</a></div>
+    <div class="sdisc">sortmypay may earn a commission if you sign up through these links, at no extra cost to you. Always check software is on HMRC's approved MTD list before buying.</div>
+  </div>
 
-<h2>Why people trust sortmypay</h2>
-<p>Every calculator uses the current tax-year figures and is updated when rates change each April. Where a number is an estimate or a rule of thumb, we say so. The tools are free, need no sign-up, and are supported by advertising so we can keep them accurate and up to date.</p>
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
 
-<div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+  <div class="answer"><strong>Who has to use Making Tax Digital for Income Tax?</strong> MTD for Income Tax applies to sole traders and landlords, based on the combined <em>gross</em> income (turnover before expenses) from self-employment and property. It starts from 6 April 2026 if that income is over £50,000, from 6 April 2027 if over £30,000, and from 6 April 2028 if over £20,000. Employees, and anyone whose only income is wages, savings, dividends or a pension, are not affected. Once in, you must keep digital records and send HMRC quarterly updates using compatible software.</div>
 
-<h2>Popular right now</h2>
-<p>Two rule changes are catching people out: <a href="/making-tax-digital-checker">Making Tax Digital for Income Tax</a>, which starts rolling out from April 2026 for sole traders and landlords, and the <a href="/pension-inheritance-tax-2027">2027 pension Inheritance Tax changes</a>, which bring most unused pensions into your estate for the first time. Both have dedicated checkers above.</p>
+  <h2>When does Making Tax Digital start?</h2>
+  <table><thead><tr><th>Your gross self-employment + property income</th><th>MTD starts</th></tr></thead>
+  <tbody>
+    <tr><td>Over £50,000</td><td>6 April 2026</td></tr>
+    <tr><td>Over £30,000</td><td>6 April 2027</td></tr>
+    <tr><td>Over £20,000</td><td>6 April 2028</td></tr>
+    <tr><td>£20,000 or under</td><td>Not yet required</td></tr>
+  </tbody></table>
+  <p class="hint">"Qualifying income" is your total gross turnover and rental income <em>before</em> expenses, added together — not your profit. Your figure from the tax return two years earlier sets your start date (e.g. your 2024/25 return decides whether you join in April 2026).</p>
+
+  <div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+
+  <h2>Making Tax Digital FAQs</h2>
+  <details><summary>What actually is Making Tax Digital?</summary><p>It's HMRC's shift to digital tax. If it applies to you, you keep your business or property records digitally and send HMRC a summary every quarter using approved software, then a final declaration after the year end — instead of one annual Self Assessment return.</p></details>
+  <details><summary>Does the £50,000 threshold count my salary too?</summary><p>No. Only your gross self-employment and property income count towards the threshold. Salary, pension, savings interest and dividends are excluded — though you still declare them as normal.</p></details>
+  <details><summary>I earn under £20,000 — do I need to do anything?</summary><p>Not yet. MTD for Income Tax isn't mandatory below £20,000, though the government may extend it in future. Carry on with the usual Self Assessment for now.</p></details>
+  <details><summary>Do partnerships and limited companies have to use it?</summary><p>Not under this rollout. MTD for Income Tax is for individual sole traders and landlords. Partnerships and companies have separate rules and timelines.</p></details>
 </main>
+<section class="related card"><h2>More UK calculators</h2><ul class="rellist"><li><a href="/take-home-pay-calculator">Take-Home Pay</a></li><li><a href="/redundancy-pay-calculator">Redundancy</a></li><li><a href="/holiday-entitlement-calculator">Holiday</a></li><li><a href="/notice-period-calculator">Notice</a></li><li><a href="/maternity-pay-calculator">Maternity</a></li><li><a href="/dividend-tax-calculator">Dividend Tax</a></li><li><a href="/mortgage-overpayment-calculator">Overpayment</a></li><li><a href="/pension-inheritance-tax-2027">Pension IHT</a></li></ul></section>
 <footer>
   <p><strong>Disclaimer:</strong> These calculators give estimates based on 2026/27 rates for general guidance only, not legal or financial advice. Figures are rounded and assume a standard tax code with income taxed evenly across the year. For your official position, check with HMRC, your employer, ACAS or a qualified adviser.</p>
   <p>Rates verified against GOV.UK, mygov.scot, the House of Commons Library and CIPP for 2026/27.</p>
@@ -140,7 +171,7 @@
   <span class="ad__label">Advertisement</span>
 </div>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"sortmypay","url":"https://sortmypay.co.uk/"},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Take-Home Pay","url":"https://sortmypay.co.uk/take-home-pay-calculator"},{"@type":"ListItem","position":2,"name":"Redundancy","url":"https://sortmypay.co.uk/redundancy-pay-calculator"},{"@type":"ListItem","position":3,"name":"Holiday","url":"https://sortmypay.co.uk/holiday-entitlement-calculator"},{"@type":"ListItem","position":4,"name":"Notice","url":"https://sortmypay.co.uk/notice-period-calculator"},{"@type":"ListItem","position":5,"name":"Maternity","url":"https://sortmypay.co.uk/maternity-pay-calculator"},{"@type":"ListItem","position":6,"name":"Dividend Tax","url":"https://sortmypay.co.uk/dividend-tax-calculator"},{"@type":"ListItem","position":7,"name":"Overpayment","url":"https://sortmypay.co.uk/mortgage-overpayment-calculator"},{"@type":"ListItem","position":8,"name":"MTD Checker","url":"https://sortmypay.co.uk/making-tax-digital-checker"},{"@type":"ListItem","position":9,"name":"Pension IHT","url":"https://sortmypay.co.uk/pension-inheritance-tax-2027"}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Making Tax Digital for Income Tax Checker","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sortmypay.co.uk/"},{"@type":"ListItem","position":2,"name":"MTD Checker","item":"https://sortmypay.co.uk/making-tax-digital-checker"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What actually is Making Tax Digital?","acceptedAnswer":{"@type":"Answer","text":"It's HMRC's shift to digital tax. If it applies to you, you keep your business or property records digitally and send HMRC a summary every quarter using approved software, then a final declaration after the year end — instead of one annual Self Assessment return."}},{"@type":"Question","name":"Does the £50,000 threshold count my salary too?","acceptedAnswer":{"@type":"Answer","text":"No. Only your gross self-employment and property income count towards the threshold. Salary, pension, savings interest and dividends are excluded — though you still declare them as normal."}},{"@type":"Question","name":"I earn under £20,000 — do I need to do anything?","acceptedAnswer":{"@type":"Answer","text":"Not yet. MTD for Income Tax isn't mandatory below £20,000, though the government may extend it in future. Carry on with the usual Self Assessment for now."}},{"@type":"Question","name":"Do partnerships and limited companies have to use it?","acceptedAnswer":{"@type":"Answer","text":"Not under this rollout. MTD for Income Tax is for individual sole traders and landlords. Partnerships and companies have separate rules and timelines."}}]}]}
 </script>
 <script>
 (function(){

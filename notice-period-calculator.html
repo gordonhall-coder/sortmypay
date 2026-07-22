@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UK Tax &amp; Pay Calculators 2026/27 | Take-Home Pay, Redundancy, Pension IHT | sortmypay</title>
-<meta name="description" content="Free, accurate UK calculators for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax, mortgage overpayment, a Making Tax Digital checker and a 2027 pension Inheritance Tax checker.">
-<link rel="canonical" href="https://sortmypay.co.uk/">
+<title>Notice Period Calculator | UK Statutory Notice | sortmypay</title>
+<meta name="description" content="Find your statutory minimum notice period in the UK — one week per full year worked, capped at 12 weeks. Enter your years of service.">
+<link rel="canonical" href="https://sortmypay.co.uk/notice-period-calculator">
 <meta name="google-adsense-account" content="ca-pub-2537953076284750">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2537953076284750" crossorigin="anonymous"></script>
 <style>
@@ -110,24 +110,25 @@
 <div class="wrap">
 <header>
   <span class="badge">Updated for 2026/27 tax year</span>
-  <h1>UK Tax &amp; Pay Calculators</h1>
-  <p class="lede">Free, accurate and up to date for 2026/27 — clear answers to the everyday money and employment questions that official sources make confusing. Pick a calculator to get started.</p>
+  <h1>UK Notice Period Calculator</h1>
+  <p class="lede">See the statutory minimum notice your employer must give, based on your years of service.</p>
 </header>
-<nav class="tabs"><a class="tab active" href="/">Home</a><a class="tab" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab" href="/making-tax-digital-checker">MTD Checker</a><a class="tab" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
+<nav class="tabs"><a class="tab" href="/">Home</a><a class="tab" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab active" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab" href="/making-tax-digital-checker">MTD Checker</a><a class="tab" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
 <div class="ad ad--leaderboard"><span class="ad__label">Advertisement</span></div>
 <main>
-<div class="toolgrid"><a class="toolcard" href="/take-home-pay-calculator"><div class="tt">Take-Home Pay</div><div class="td">Your salary after Income Tax, NI, pension and student loan.</div></a><a class="toolcard" href="/redundancy-pay-calculator"><div class="tt">Redundancy</div><div class="td">What you're owed if you're made redundant, by age and service.</div></a><a class="toolcard" href="/holiday-entitlement-calculator"><div class="tt">Holiday</div><div class="td">How many days paid holiday you get — set days or irregular hours.</div></a><a class="toolcard" href="/notice-period-calculator"><div class="tt">Notice</div><div class="td">The minimum notice your employer must give you.</div></a><a class="toolcard" href="/maternity-pay-calculator"><div class="tt">Maternity</div><div class="td">Statutory maternity and paternity pay over 39 weeks.</div></a><a class="toolcard" href="/dividend-tax-calculator"><div class="tt">Dividend Tax</div><div class="td">Tax on dividends for company directors, at the new 2026/27 rates.</div></a><a class="toolcard" href="/mortgage-overpayment-calculator"><div class="tt">Overpayment</div><div class="td">Interest and years saved by overpaying your mortgage.</div></a><a class="toolcard" href="/making-tax-digital-checker"><div class="tt">MTD Checker</div><div class="td">When MTD for Income Tax starts for you: 2026, 2027 or 2028.</div></a><a class="toolcard" href="/pension-inheritance-tax-2027"><div class="tt">Pension IHT</div><div class="td">Whether your pension gets taxed under the new April 2027 rules.</div></a></div>
-
-<div class="answer"><strong>What is sortmypay?</strong> sortmypay is a free set of UK money and employment calculators, built on the official rates and rules for the 2026/27 tax year. Whether you want to know your take-home pay after tax, what redundancy you're owed, how much holiday you've earned, or whether the new 2027 pension Inheritance Tax rules affect you, each tool gives a clear, accurate answer — checked against GOV.UK, HMRC and the House of Commons Library.</div>
-
-<h2>Why people trust sortmypay</h2>
-<p>Every calculator uses the current tax-year figures and is updated when rates change each April. Where a number is an estimate or a rule of thumb, we say so. The tools are free, need no sign-up, and are supported by advertising so we can keep them accurate and up to date.</p>
-
-<div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
-
-<h2>Popular right now</h2>
-<p>Two rule changes are catching people out: <a href="/making-tax-digital-checker">Making Tax Digital for Income Tax</a>, which starts rolling out from April 2026 for sole traders and landlords, and the <a href="/pension-inheritance-tax-2027">2027 pension Inheritance Tax changes</a>, which bring most unused pensions into your estate for the first time. Both have dedicated checkers above.</p>
+<div class="card">
+    <div class="grid">
+      <div><label for="notYears">Complete years employed</label><input type="number" id="notYears" min="0" step="1" placeholder="e.g. 6"></div>
+    </div>
+    <button id="calcNotice">Calculate notice period</button>
+    <div class="error" id="notErr"></div>
+    <div class="result" id="notRes"><div class="sub">Statutory minimum notice from your employer</div><div class="big" id="notBig">0</div><div class="breakdown" id="notBreak"></div></div>
+  </div>
+  <div class="answer"><strong>What notice is my employer required to give?</strong> After one month's service you're entitled to at least one week's notice. Once you've completed two years, that rises to one week for every complete year worked, capped at twelve weeks. Your contract may promise more, but never less than this statutory minimum.</div>
+  <h2>Notice FAQs</h2>
+  <details><summary>What notice must I give my employer?</summary><p>Unless your contract says otherwise, employees are only legally required to give one week's notice once they've worked a month — though contracts often ask for more.</p></details>
 </main>
+<section class="related card"><h2>More UK calculators</h2><ul class="rellist"><li><a href="/take-home-pay-calculator">Take-Home Pay</a></li><li><a href="/redundancy-pay-calculator">Redundancy</a></li><li><a href="/holiday-entitlement-calculator">Holiday</a></li><li><a href="/maternity-pay-calculator">Maternity</a></li><li><a href="/dividend-tax-calculator">Dividend Tax</a></li><li><a href="/mortgage-overpayment-calculator">Overpayment</a></li><li><a href="/making-tax-digital-checker">MTD Checker</a></li><li><a href="/pension-inheritance-tax-2027">Pension IHT</a></li></ul></section>
 <footer>
   <p><strong>Disclaimer:</strong> These calculators give estimates based on 2026/27 rates for general guidance only, not legal or financial advice. Figures are rounded and assume a standard tax code with income taxed evenly across the year. For your official position, check with HMRC, your employer, ACAS or a qualified adviser.</p>
   <p>Rates verified against GOV.UK, mygov.scot, the House of Commons Library and CIPP for 2026/27.</p>
@@ -140,7 +141,7 @@
   <span class="ad__label">Advertisement</span>
 </div>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"sortmypay","url":"https://sortmypay.co.uk/"},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Take-Home Pay","url":"https://sortmypay.co.uk/take-home-pay-calculator"},{"@type":"ListItem","position":2,"name":"Redundancy","url":"https://sortmypay.co.uk/redundancy-pay-calculator"},{"@type":"ListItem","position":3,"name":"Holiday","url":"https://sortmypay.co.uk/holiday-entitlement-calculator"},{"@type":"ListItem","position":4,"name":"Notice","url":"https://sortmypay.co.uk/notice-period-calculator"},{"@type":"ListItem","position":5,"name":"Maternity","url":"https://sortmypay.co.uk/maternity-pay-calculator"},{"@type":"ListItem","position":6,"name":"Dividend Tax","url":"https://sortmypay.co.uk/dividend-tax-calculator"},{"@type":"ListItem","position":7,"name":"Overpayment","url":"https://sortmypay.co.uk/mortgage-overpayment-calculator"},{"@type":"ListItem","position":8,"name":"MTD Checker","url":"https://sortmypay.co.uk/making-tax-digital-checker"},{"@type":"ListItem","position":9,"name":"Pension IHT","url":"https://sortmypay.co.uk/pension-inheritance-tax-2027"}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"UK Notice Period Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sortmypay.co.uk/"},{"@type":"ListItem","position":2,"name":"Notice","item":"https://sortmypay.co.uk/notice-period-calculator"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What notice must I give my employer?","acceptedAnswer":{"@type":"Answer","text":"Unless your contract says otherwise, employees are only legally required to give one week's notice once they've worked a month — though contracts often ask for more."}}]}]}
 </script>
 <script>
 (function(){

@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UK Tax &amp; Pay Calculators 2026/27 | Take-Home Pay, Redundancy, Pension IHT | sortmypay</title>
-<meta name="description" content="Free, accurate UK calculators for 2026/27 — take-home pay, redundancy, holiday, notice, maternity pay, dividend tax, mortgage overpayment, a Making Tax Digital checker and a 2027 pension Inheritance Tax checker.">
-<link rel="canonical" href="https://sortmypay.co.uk/">
+<title>Pension Inheritance Tax Calculator 2027 | Will Your Pension Be Taxed? | sortmypay</title>
+<meta name="description" content="From April 2027 unused pensions fall into Inheritance Tax. Estimate your pension's IHT exposure, the 40% charge and the post-75 double-tax trap. Free 2027 checker.">
+<link rel="canonical" href="https://sortmypay.co.uk/pension-inheritance-tax-2027">
 <meta name="google-adsense-account" content="ca-pub-2537953076284750">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2537953076284750" crossorigin="anonymous"></script>
 <style>
@@ -110,24 +110,74 @@
 <div class="wrap">
 <header>
   <span class="badge">Updated for 2026/27 tax year</span>
-  <h1>UK Tax &amp; Pay Calculators</h1>
-  <p class="lede">Free, accurate and up to date for 2026/27 — clear answers to the everyday money and employment questions that official sources make confusing. Pick a calculator to get started.</p>
+  <h1>Pension Inheritance Tax Calculator (2027 Rules)</h1>
+  <p class="lede">From 6 April 2027 most unused pensions count towards Inheritance Tax. Estimate your exposure — including the post-75 'double-tax' trap.</p>
 </header>
-<nav class="tabs"><a class="tab active" href="/">Home</a><a class="tab" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab" href="/making-tax-digital-checker">MTD Checker</a><a class="tab" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
+<nav class="tabs"><a class="tab" href="/">Home</a><a class="tab" href="/take-home-pay-calculator">Take-Home Pay</a><a class="tab" href="/redundancy-pay-calculator">Redundancy</a><a class="tab" href="/holiday-entitlement-calculator">Holiday</a><a class="tab" href="/notice-period-calculator">Notice</a><a class="tab" href="/maternity-pay-calculator">Maternity</a><a class="tab" href="/dividend-tax-calculator">Dividend Tax</a><a class="tab" href="/mortgage-overpayment-calculator">Overpayment</a><a class="tab" href="/making-tax-digital-checker">MTD Checker</a><a class="tab active" href="/pension-inheritance-tax-2027">Pension IHT</a></nav>
 <div class="ad ad--leaderboard"><span class="ad__label">Advertisement</span></div>
 <main>
-<div class="toolgrid"><a class="toolcard" href="/take-home-pay-calculator"><div class="tt">Take-Home Pay</div><div class="td">Your salary after Income Tax, NI, pension and student loan.</div></a><a class="toolcard" href="/redundancy-pay-calculator"><div class="tt">Redundancy</div><div class="td">What you're owed if you're made redundant, by age and service.</div></a><a class="toolcard" href="/holiday-entitlement-calculator"><div class="tt">Holiday</div><div class="td">How many days paid holiday you get — set days or irregular hours.</div></a><a class="toolcard" href="/notice-period-calculator"><div class="tt">Notice</div><div class="td">The minimum notice your employer must give you.</div></a><a class="toolcard" href="/maternity-pay-calculator"><div class="tt">Maternity</div><div class="td">Statutory maternity and paternity pay over 39 weeks.</div></a><a class="toolcard" href="/dividend-tax-calculator"><div class="tt">Dividend Tax</div><div class="td">Tax on dividends for company directors, at the new 2026/27 rates.</div></a><a class="toolcard" href="/mortgage-overpayment-calculator"><div class="tt">Overpayment</div><div class="td">Interest and years saved by overpaying your mortgage.</div></a><a class="toolcard" href="/making-tax-digital-checker"><div class="tt">MTD Checker</div><div class="td">When MTD for Income Tax starts for you: 2026, 2027 or 2028.</div></a><a class="toolcard" href="/pension-inheritance-tax-2027"><div class="tt">Pension IHT</div><div class="td">Whether your pension gets taxed under the new April 2027 rules.</div></a></div>
+<div class="card">
+    <div class="grid">
+      <div><label for="penPot">Pension pot value (£) <span class="hint">unused / undrawn funds</span></label><input type="number" id="penPot" min="0" step="1000" placeholder="e.g. 300000"></div>
+      <div><label for="penEstate">Rest of your estate (£) <span class="hint">home, savings, investments, less debts</span></label><input type="number" id="penEstate" min="0" step="1000" placeholder="e.g. 400000"></div>
+      <div><label for="penSpouse">Who inherits?</label>
+        <select id="penSpouse">
+          <option value="other">Children / others (not a spouse)</option>
+          <option value="spouse">Everything to my spouse or civil partner</option>
+        </select></div>
+      <div><label for="penHome">Leaving your home to children/grandchildren?</label>
+        <select id="penHome">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select></div>
+      <div><label for="penAge">Your age when you die</label>
+        <select id="penAge">
+          <option value="under">Under 75</option>
+          <option value="over">75 or over</option>
+        </select></div>
+      <div><label for="penRate">Beneficiary's income tax rate <span class="hint">only matters if 75+</span></label>
+        <select id="penRate">
+          <option value="0">Non-taxpayer (0%)</option>
+          <option value="0.2" selected>Basic rate (20%)</option>
+          <option value="0.4">Higher rate (40%)</option>
+          <option value="0.45">Additional rate (45%)</option>
+        </select></div>
+    </div>
+    <button id="calcPen">Estimate my pension's IHT exposure</button>
+    <div class="error" id="penErr"></div>
+    <div class="result" id="penRes"><div class="sub">Estimated Inheritance Tax on your estate</div><div class="big" id="penBig">—</div><div class="sub" id="penSub"></div><div class="breakdown" id="penBreak"></div></div>
+    <div class="warn" id="penWarn" style="display:none"></div>
+  </div>
 
-<div class="answer"><strong>What is sortmypay?</strong> sortmypay is a free set of UK money and employment calculators, built on the official rates and rules for the 2026/27 tax year. Whether you want to know your take-home pay after tax, what redundancy you're owed, how much holiday you've earned, or whether the new 2027 pension Inheritance Tax rules affect you, each tool gives a clear, accurate answer — checked against GOV.UK, HMRC and the House of Commons Library.</div>
+  <div class="ad ad--result"><span class="ad__label">Advertisement</span></div>
 
-<h2>Why people trust sortmypay</h2>
-<p>Every calculator uses the current tax-year figures and is updated when rates change each April. Where a number is an estimate or a rule of thumb, we say so. The tools are free, need no sign-up, and are supported by advertising so we can keep them accurate and up to date.</p>
+  <div class="answer"><strong>Will my pension be hit by Inheritance Tax from 2027?</strong> From 6 April 2027, most unused pension funds and lump-sum death benefits count as part of your estate for Inheritance Tax. Each person has a £325,000 nil-rate band, plus up to £175,000 more if a home passes to children or grandchildren — anything above the total is taxed at 40%. Pensions left to a spouse or civil partner stay exempt. If you die at 75 or over, your beneficiaries also pay Income Tax at their own rate when they draw the pension, on top of the IHT — a "double charge" that can take the effective rate to 60% or more.</div>
 
-<div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+  <h2>How pension Inheritance Tax works from April 2027</h2>
+  <p>Under the rules confirmed by HMRC, unused pension funds and most death benefits are added to the value of your estate when you die on or after 6 April 2027. Your personal representatives report the pension to HMRC alongside the rest of your estate, and any Inheritance Tax due is apportioned across your assets in proportion to their value.</p>
 
-<h2>Popular right now</h2>
-<p>Two rule changes are catching people out: <a href="/making-tax-digital-checker">Making Tax Digital for Income Tax</a>, which starts rolling out from April 2026 for sole traders and landlords, and the <a href="/pension-inheritance-tax-2027">2027 pension Inheritance Tax changes</a>, which bring most unused pensions into your estate for the first time. Both have dedicated checkers above.</p>
+  <table><thead><tr><th>Allowance</th><th>2026/27 amount</th></tr></thead>
+  <tbody>
+    <tr><td>Nil-rate band (everyone)</td><td>£325,000</td></tr>
+    <tr><td>Residence nil-rate band (home to descendants)</td><td>up to £175,000</td></tr>
+    <tr><td>Rate above the allowances</td><td>40%</td></tr>
+  </tbody></table>
+  <p class="hint">The residence nil-rate band starts to taper away once the estate is worth more than £2 million, losing £1 for every £2 above that. Transfers between spouses and civil partners — including pensions — remain exempt, and unused nil-rate bands can pass to a surviving spouse.</p>
+
+  <div class="warn" style="display:block;margin:16px 0"><strong>The post-75 "double tax" trap.</strong> If you die at 75 or over, your beneficiaries pay Income Tax at their marginal rate on pension withdrawals <em>as well as</em> the 40% IHT. On a fully taxable pot that means an effective rate of about 52% for a basic-rate heir, 64% for a higher-rate heir and 67% for an additional-rate heir. There is currently no relief for this double charge in the confirmed rules.</div>
+
+  <div class="ad ad--inarticle"><span class="ad__label">Advertisement</span></div>
+
+  <h2>What's out of scope</h2>
+  <p>Not everything is caught. Death-in-service benefits paid because you were employed, dependants' scheme pensions, joint-life annuities and lump sums paid to charity stay outside the Inheritance Tax net. Anything left to a spouse or civil partner is also exempt.</p>
+
+  <h2>Pension Inheritance Tax FAQs</h2>
+  <details><summary>When exactly does this start?</summary><p>The rules apply to deaths on or after 6 April 2027. If someone dies before that date, the current rules apply — pensions generally stay outside the estate — regardless of when the money is actually paid out.</p></details>
+  <details><summary>Are pensions left to my spouse taxed?</summary><p>No. Pensions and other assets passing to a surviving spouse or civil partner remain exempt from Inheritance Tax, and any nil-rate band you don't use can transfer to them for use on the second death.</p></details>
+  <details><summary>Why can the effective rate be over 60%?</summary><p>For deaths at 75 or over, the pension is first reduced by 40% Inheritance Tax, then your beneficiary pays Income Tax at their own rate when they draw what's left. The two charges stack, so a higher-rate beneficiary can lose roughly two-thirds of the pot.</p></details>
+  <details><summary>Who reports and pays the tax?</summary><p>Your personal representatives (executors) are responsible for reporting the pension to HMRC and paying the Inheritance Tax due. Pension scheme administrators and beneficiaries can become jointly liable in some circumstances. This is complex — professional advice is worthwhile for larger estates.</p></details>
 </main>
+<section class="related card"><h2>More UK calculators</h2><ul class="rellist"><li><a href="/take-home-pay-calculator">Take-Home Pay</a></li><li><a href="/redundancy-pay-calculator">Redundancy</a></li><li><a href="/holiday-entitlement-calculator">Holiday</a></li><li><a href="/notice-period-calculator">Notice</a></li><li><a href="/maternity-pay-calculator">Maternity</a></li><li><a href="/dividend-tax-calculator">Dividend Tax</a></li><li><a href="/mortgage-overpayment-calculator">Overpayment</a></li><li><a href="/making-tax-digital-checker">MTD Checker</a></li></ul></section>
 <footer>
   <p><strong>Disclaimer:</strong> These calculators give estimates based on 2026/27 rates for general guidance only, not legal or financial advice. Figures are rounded and assume a standard tax code with income taxed evenly across the year. For your official position, check with HMRC, your employer, ACAS or a qualified adviser.</p>
   <p>Rates verified against GOV.UK, mygov.scot, the House of Commons Library and CIPP for 2026/27.</p>
@@ -140,7 +190,7 @@
   <span class="ad__label">Advertisement</span>
 </div>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"sortmypay","url":"https://sortmypay.co.uk/"},{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Take-Home Pay","url":"https://sortmypay.co.uk/take-home-pay-calculator"},{"@type":"ListItem","position":2,"name":"Redundancy","url":"https://sortmypay.co.uk/redundancy-pay-calculator"},{"@type":"ListItem","position":3,"name":"Holiday","url":"https://sortmypay.co.uk/holiday-entitlement-calculator"},{"@type":"ListItem","position":4,"name":"Notice","url":"https://sortmypay.co.uk/notice-period-calculator"},{"@type":"ListItem","position":5,"name":"Maternity","url":"https://sortmypay.co.uk/maternity-pay-calculator"},{"@type":"ListItem","position":6,"name":"Dividend Tax","url":"https://sortmypay.co.uk/dividend-tax-calculator"},{"@type":"ListItem","position":7,"name":"Overpayment","url":"https://sortmypay.co.uk/mortgage-overpayment-calculator"},{"@type":"ListItem","position":8,"name":"MTD Checker","url":"https://sortmypay.co.uk/making-tax-digital-checker"},{"@type":"ListItem","position":9,"name":"Pension IHT","url":"https://sortmypay.co.uk/pension-inheritance-tax-2027"}]}]}
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"2027 Pension Inheritance Tax Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sortmypay.co.uk/"},{"@type":"ListItem","position":2,"name":"Pension IHT","item":"https://sortmypay.co.uk/pension-inheritance-tax-2027"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When exactly does this start?","acceptedAnswer":{"@type":"Answer","text":"The rules apply to deaths on or after 6 April 2027. If someone dies before that date, the current rules apply — pensions generally stay outside the estate — regardless of when the money is actually paid out."}},{"@type":"Question","name":"Are pensions left to my spouse taxed?","acceptedAnswer":{"@type":"Answer","text":"No. Pensions and other assets passing to a surviving spouse or civil partner remain exempt from Inheritance Tax, and any nil-rate band you don't use can transfer to them for use on the second death."}},{"@type":"Question","name":"Why can the effective rate be over 60%?","acceptedAnswer":{"@type":"Answer","text":"For deaths at 75 or over, the pension is first reduced by 40% Inheritance Tax, then your beneficiary pays Income Tax at their own rate when they draw what's left. The two charges stack, so a higher-rate beneficiary can lose roughly two-thirds of the pot."}},{"@type":"Question","name":"Who reports and pays the tax?","acceptedAnswer":{"@type":"Answer","text":"Your personal representatives (executors) are responsible for reporting the pension to HMRC and paying the Inheritance Tax due. Pension scheme administrators and beneficiaries can become jointly liable in some circumstances. This is complex — professional advice is worthwhile for larger estates."}}]}]}
 </script>
 <script>
 (function(){
